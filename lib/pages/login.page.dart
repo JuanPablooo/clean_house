@@ -1,6 +1,8 @@
 import 'package:clean_house/pages/widgets/email.widget.dart';
 import 'package:flutter/material.dart';
 
+import 'escolha-perfil.page.dart';
+
 class LoginPage extends StatelessWidget {
 
   @override
@@ -148,7 +150,14 @@ class LoginPage extends StatelessWidget {
             Container(
               height: 30,
               alignment: Alignment.center,
-              child: FlatButton(onPressed: ()=>{},
+              child: FlatButton(
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context)=> EscolhaPerfil())
+                    );
+                  },
                   child: Text(
                     "Cadastre-se",
                     textAlign: TextAlign.center,
