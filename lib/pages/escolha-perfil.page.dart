@@ -147,6 +147,27 @@ class EscolhaPerfil extends StatelessWidget{
                 ),
               ),
             ),
+            SizedBox(
+              height: 13,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "já possui conta ?"
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: FlatButton(onPressed: null,
+                      child: Text("Entre",
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 20
+                        ),
+                      )),
+                )
+              ],
+            )
 
           ]
         ),
