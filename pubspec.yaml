@@ -59,6 +59,7 @@ flutter:
     - assets/marcas-e-logotipos.png
     - assets/reset-password-icon.png
     - assets/logo.png
+    - assets/background.png
     - assets/cliente.png
     - assets/funcionaria.png
     - assets/casa.png

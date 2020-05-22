@@ -1,5 +1,5 @@
-import 'package:clean_house/pages/escolha-perfil.page.dart';
-import 'package:clean_house/pages/login.page.dart';
+import 'package:clean_house/view/escolha-perfil.page.dart';
+import 'package:clean_house/view/login.page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

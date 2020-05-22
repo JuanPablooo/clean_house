@@ -1,5 +1,7 @@
-import 'package:clean_house/pages/widgets/email.widget.dart';
 import 'package:flutter/material.dart';
+
+import 'package:clean_house/view/widgets/email.widget.dart';
+import 'package:clean_house/view/widgets/background.dart';
 
 import 'escolha-perfil.page.dart';
 
@@ -9,20 +11,14 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       body: Container(
-//        decoration: BoxDecoration(
-//          image:
-//        ),
+        decoration: Background.desenha("background.png"),
+        margin: EdgeInsets.all(5),
         padding: EdgeInsets.only(top: 60, left: 40, right: 40),
-          color: Color.fromRGBO(25,184,212, 1.0),
           child: ListView(
             children: <Widget>[
+
               SizedBox(
-                height: 110,
-                width: 110,
-                child: Image.asset("assets/logo.png"),
-              ),
-              SizedBox(
-                height: 10,
+                height: 120,
               ),
               Email(),
               SizedBox(
