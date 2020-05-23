@@ -1,16 +1,22 @@
-import 'package:clean_house/view/widgets/buttons/btn-cadastrar.dart';
-import 'package:clean_house/view/widgets/buttons/btn-entrar-facebook.dart';
-import 'package:clean_house/view/widgets/buttons/btn-entrar-google.dart';
-import 'package:clean_house/view/widgets/buttons/btn-entrar.dart';
-import 'package:clean_house/view/widgets/buttons/input-email.dart';
-import 'package:clean_house/view/widgets/buttons/input-senha.dart';
+import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
 import 'package:flutter/material.dart';
 
-import 'package:clean_house/view/widgets/email.widget.dart';
+import 'package:clean_house/view/widgets/buttons/btn-cadastrar.dart';
+import 'package:clean_house/view/widgets/buttons/input-email.dart';
+import 'package:clean_house/view/widgets/buttons/input-senha.dart';
+
+
 import 'package:clean_house/view/widgets/background.dart';
 import 'package:clean_house/constants/cores.dart';
 
 import 'escolha-perfil.page.dart';
+
+ cadastrastrese(contexto) => Navigator.push(
+      contexto,
+      MaterialPageRoute(
+          builder: (BuildContext context)=> EscolhaPerfil())
+  );
+
 
 class LoginPage extends StatelessWidget {
 
@@ -58,15 +64,16 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              btnEntrar(),
+              btnGeneric("Entrar", myDarkBlue, null, null),
               SizedBox(
                 height: 10,
               ),
-              entrarGoogle(),
+//              entrarGoogle(),
+              btnGeneric("Entrar Com o Google", myDarkBlue, null, "marcas-e-logotipos.png"),
               SizedBox(
                 height: 10,
               ),
-              entrarFacebook(),
+              btnGeneric("Entrar Com o Facebook", myDarkBlue, null, "fb-icon.png"),
 
               SizedBox(
                 height: 10,
