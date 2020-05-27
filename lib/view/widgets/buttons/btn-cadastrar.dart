@@ -1,7 +1,7 @@
 import 'package:clean_house/constants/cores.dart';
 import 'package:flutter/material.dart';
 
-import '../../escolha-perfil.page.dart';
+import '../../cadastro/escolha-perfil.page.dart';
 
 Container btnCadastrar(contexto)=>Container(
   height: 30,

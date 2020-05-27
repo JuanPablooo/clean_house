@@ -11,7 +11,7 @@ Container addImgButton(imgName)=>
       ),
     );
 
-Container btnGeneric(titulo, cor, funcao, imgName){
+Container btnGeneric(titulo, cor, funcao, imgName, widthBtn){
   var align = MainAxisAlignment.center;
   var icone = Container();
   if(imgName != null){
@@ -19,7 +19,7 @@ Container btnGeneric(titulo, cor, funcao, imgName){
     icone = addImgButton(imgName);
   }
  return Container(
-
+   width: widthBtn,
   height: 50,
   alignment: Alignment.centerLeft,
   decoration: BoxDecoration(
@@ -27,7 +27,12 @@ Container btnGeneric(titulo, cor, funcao, imgName){
     borderRadius: BorderRadius.all(Radius.circular(18)),
 
   ),
-  child: FlatButton(onPressed: ()=>{},
+  child: FlatButton(onPressed: ()=>{
+    if(funcao != null){
+      funcao()
+    }
+
+  },
       child: Row(
         mainAxisAlignment: align,
 

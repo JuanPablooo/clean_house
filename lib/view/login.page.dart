@@ -9,7 +9,7 @@ import 'package:clean_house/view/widgets/buttons/input-senha.dart';
 import 'package:clean_house/view/widgets/background.dart';
 import 'package:clean_house/constants/cores.dart';
 
-import 'escolha-perfil.page.dart';
+import 'cadastro/escolha-perfil.page.dart';
 
  cadastrastrese(contexto) => Navigator.push(
       contexto,
@@ -65,16 +65,16 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              btnGeneric("Entrar", myDarkBlue, null, null),
+              btnGeneric("Entrar", myDarkBlue, null, null, null),
               SizedBox(
                 height: 10,
               ),
 //              entrarGoogle(),
-              btnGeneric("Entrar Com o Google", myDarkBlue, null, "marcas-e-logotipos.png"),
+              btnGeneric("Entrar Com o Google", myDarkBlue, null, "marcas-e-logotipos.png", null),
               SizedBox(
                 height: 10,
               ),
-              btnGeneric("Entrar Com o Facebook", myDarkBlue, null, "fb-icon.png"),
+              btnGeneric("Entrar Com o Facebook", myDarkBlue, null, "fb-icon.png", null),
 
               SizedBox(
                 height: 10,

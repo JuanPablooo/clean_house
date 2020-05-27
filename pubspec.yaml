@@ -54,18 +54,18 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/facebook.png
-    - assets/fb-icon.png
-    - assets/marcas-e-logotipos.png
-    - assets/reset-password-icon.png
-    - assets/logo.png
-    - assets/background.png
-    - assets/cliente.png
-    - assets/funcionaria.png
-    - assets/casa.png
-    - assets/contatos.png
-    - assets/launcher/logo.png
-    - assets/launcher/foreground.png
+    - assets/
+#    - assets/fb-icon.png
+#    - assets/marcas-e-logotipos.png
+#    - assets/reset-password-icon.png
+#    - assets/logo.png
+#    - assets/background.png
+#    - assets/cliente.png
+#    - assets/funcionaria.png
+#    - assets/casa.png
+#    - assets/contatos.png
+#    - assets/launcher/logo.png
+#    - assets/launcher/foreground.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
