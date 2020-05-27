@@ -1,6 +1,7 @@
+
+
 import 'package:clean_house/view/widgets/background.dart';
 import 'package:flutter/material.dart';
-
 class Passo1Cliente extends StatefulWidget {
   @override
   _Passo1Cliente createState() {
@@ -25,8 +26,17 @@ class _Passo1Cliente extends State<Passo1Cliente> {
         child: ListView(
           children: <Widget>[
             SizedBox(
-              height: 120,
+              height: 80,
               child: Container(
+                alignment: Alignment.topLeft,
+//                decoration: BoxDecoration(
+//                  color: Colors.deepPurple
+//                ),
+                child: SizedBox(
+                  height: 30,
+                  width: 30,
+                  child: Image.asset("assets/icon-voltar.png"),
+                ),
 //                decoration: Background.desenha("retangulo-superior.png"),
               ),
             )

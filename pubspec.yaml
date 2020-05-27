@@ -39,6 +39,7 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_svg: ^0.17.4
 
 
 
