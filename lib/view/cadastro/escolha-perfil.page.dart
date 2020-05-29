@@ -5,18 +5,8 @@ import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
 import 'package:clean_house/view/cadastro/clientes/passo-1-cliente.dart';
 import 'package:flutter/material.dart';
 
-//var cadastrastrese = (contexto) => Navigator.push(
-//    contexto,
-//    MaterialPageRoute(
-//        builder: (BuildContext context)=> LoginPage())
-//);
 
 class EscolhaPerfil extends StatelessWidget{
-//  var cadastrastrese = (contexto) => Navigator.push(
-//      contexto,
-//      MaterialPageRoute(
-//          builder: (BuildContext context)=> LoginPage())
-//  );
   @override
   Widget build(BuildContext context){
     var  entrarPage = () {

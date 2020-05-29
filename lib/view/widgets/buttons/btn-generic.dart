@@ -19,10 +19,19 @@ Container btnGeneric(titulo, cor, funcao, imgName, widthBtn){
     icone = addImgButton(imgName);
   }
  return Container(
+
    width: widthBtn,
   height: 50,
   alignment: Alignment.centerLeft,
   decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+          offset: Offset(3,3),
+          blurRadius: 3.0,
+          spreadRadius: .8,
+          color: Colors.black12
+      )
+    ],
     color: cor,
     borderRadius: BorderRadius.all(Radius.circular(18)),
 
