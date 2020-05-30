@@ -106,9 +106,13 @@ class _Passo1Cliente extends State<Passo1Cliente> {
               ),
             ),
             SizedBox(
-              height: 25,
+              height: 15,
             ),
-            btnGeneric("CONTINUAR", myDarkBlue, null, null, 50.3),
+            Container(
+              margin: EdgeInsets.all(35),
+              child: btnGeneric("CONTINUAR", myDarkBlue, null, null, 50.3),
+            )
+
             //InputeGeneric(validacao: teste("este é p valor"),)
 
           ],
