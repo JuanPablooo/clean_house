@@ -83,23 +83,9 @@ class _Passo1Cliente extends State<Passo1Cliente> {
                 ),
                 child: ListView(
                   children: <Widget>[
-                    TextFormField(
-                      //autofocus: true,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          labelText: "E-mail *",
-                          labelStyle: TextStyle(
-                            color: Colors.black38,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          )
-                      ),
-                      style: TextStyle(
-                        fontSize: 20 ,
-                      ),
-                    ),
-                    inputSenha(),
-                    InputeGeneric()
+                    InputGeneric(labelText: "E-mail",),
+                    InputGeneric(labelText: "E-mail",),
+//                    inputSenha(),
 
                   ],
                 ),

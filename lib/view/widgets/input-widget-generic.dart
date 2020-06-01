@@ -1,34 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-class InputeGeneric extends StatelessWidget{
-
-  Function validacao;
-  String keyInput;
-//  InputeGeneric();
-  InputeGeneric({Function validacao}){
-    this.validacao = validacao;
-  }
-
+class InputGeneric extends StatefulWidget {
   @override
-  Widget build(BuildContext context){
-    return TextFormField(
-      //autofocus: true,
+  _InputGenericState createState() => _InputGenericState();
 
-      keyboardType: TextInputType.emailAddress,
-      validator: validacao,
-      decoration: InputDecoration(
-          labelText: "E-mail *",
-          labelStyle: TextStyle(
-            color: Colors.black38,
-            fontWeight: FontWeight.w400,
-            fontSize: 20,
-          )
-      ),
-      style: TextStyle(
-        fontSize: 20 ,
+
+  String labelText;
+  Function onChange;
+  String generoInput ;
+  TextInputType tipoTeclado;
+  String Function()  errorText;
+  Icon icone;
+
+  InputGeneric({
+        String this.labelText="",
+        this.onChange ,this.tipoTeclado,
+        String Function() this.errorText,
+        this.generoInput="o",
+        Icon this.icone
+      });
+}
+
+class _InputGenericState extends State<InputGeneric> {
+  @override
+  Widget build(BuildContext context) {
+    print("-=--=--=-=-=-");
+
+    print(widget.errorText);
+    print("-=--=--=-=-=-");
+    return Container(
+      child: Observer(
+        builder: (_) {
+          return TextField(
+            onChanged: widget.onChange,
+            onTap: () {},
+            keyboardType: widget.tipoTeclado ,
+            decoration: InputDecoration(
+              labelStyle: TextStyle(
+                color: Colors.black38,
+                fontWeight: FontWeight.w400,
+                fontSize: 20,
+              ),
+              labelText: "${widget.labelText}",
+              prefixIcon: widget.icone,
+              hintText: "digite ${widget.generoInput} ${widget.labelText}",
+              errorText: widget.errorText == null ? null : widget.errorText(),
+//              widget.errorText == null ? null : widget.errorText(),
+            ),
+          );
+        },
       ),
     );
   }
-
-
 }
