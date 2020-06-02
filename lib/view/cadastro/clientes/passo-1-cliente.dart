@@ -1,27 +1,22 @@
-
+import 'package:clean_house/view/cadastro/passosGenericos/passo1.dart';
+import 'package:flutter/material.dart';
 
 import 'package:clean_house/constants/cores.dart';
 import 'package:clean_house/view/widgets/background.dart';
 import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
 import 'package:clean_house/view/widgets/buttons/input-email.dart';
-import 'package:clean_house/view/widgets/buttons/input-senha.dart';
+import 'package:clean_house/view/widgets/circulo-subpasso.dart';
 import 'package:clean_house/view/widgets/input-widget-generic.dart';
-import 'package:flutter/material.dart';
+
+
 class Passo1Cliente extends StatefulWidget {
   @override
   _Passo1Cliente createState() {
     return _Passo1Cliente();
   }
 }
-teste(value){
-  (x)=>{
-    if(x!="f"){
-      print("oooo")
-    },
-  print(x)
-  };
 
-}
+
 class _Passo1Cliente extends State<Passo1Cliente> {
 
   @override
@@ -61,36 +56,7 @@ class _Passo1Cliente extends State<Passo1Cliente> {
             SizedBox(
               height: 55,
             ),
-            SizedBox(
-              height: 335,
-              child: Container(
-
-                margin: EdgeInsets.only(left: 25, right: 25),
-                padding: EdgeInsets.only(left: 25, right: 25, top: 25),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(30)
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(5,5),
-                      blurRadius: 10.0,
-                      spreadRadius: .8,
-                      color: Colors.grey
-                    )
-                  ]
-                ),
-                child: ListView(
-                  children: <Widget>[
-                    InputGeneric(labelText: "E-mail",),
-                    InputGeneric(labelText: "E-mail",),
-//                    inputSenha(),
-
-                  ],
-                ),
-              ),
-            ),
+            Passo1(),
             SizedBox(
               height: 15,
             ),

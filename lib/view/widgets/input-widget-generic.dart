@@ -13,12 +13,13 @@ class InputGeneric extends StatefulWidget {
   TextInputType tipoTeclado;
   String Function()  errorText;
   Icon icone;
+  String hint;
 
   InputGeneric({
-        String this.labelText="",
+        @required String this.labelText="",
         this.onChange ,this.tipoTeclado,
         String Function() this.errorText,
-        this.generoInput="o",
+        String this.hint,
         Icon this.icone
       });
 }
@@ -26,10 +27,7 @@ class InputGeneric extends StatefulWidget {
 class _InputGenericState extends State<InputGeneric> {
   @override
   Widget build(BuildContext context) {
-    print("-=--=--=-=-=-");
 
-    print(widget.errorText);
-    print("-=--=--=-=-=-");
     return Container(
       child: Observer(
         builder: (_) {
@@ -45,7 +43,7 @@ class _InputGenericState extends State<InputGeneric> {
               ),
               labelText: "${widget.labelText}",
               prefixIcon: widget.icone,
-              hintText: "digite ${widget.generoInput} ${widget.labelText}",
+              hintText: widget.hint,
               errorText: widget.errorText == null ? null : widget.errorText(),
 //              widget.errorText == null ? null : widget.errorText(),
             ),
