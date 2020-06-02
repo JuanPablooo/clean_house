@@ -26,6 +26,7 @@ dependencies:
   mobx:
   flutter_mobx:
   provider:
+  email_validator: ^1.0.4
 
 
   flutter_launcher_icons: "^0.7.0"
