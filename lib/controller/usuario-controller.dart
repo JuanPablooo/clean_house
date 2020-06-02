@@ -16,7 +16,7 @@ abstract class _UsuarioControllerBase with Store{
     return null ;
   }
   String validaNome(){
-    if( usuario.nome.isEmpty ){
+    if( usuario.nome == null || usuario.nome.isEmpty ){
       return "o nome é obrigatório";
     }
     return null;

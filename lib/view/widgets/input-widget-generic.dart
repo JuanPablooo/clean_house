@@ -28,6 +28,25 @@ class _InputGenericState extends State<InputGeneric> {
   @override
   Widget build(BuildContext context) {
 
+//    return  Observer(builder: (_){
+//      return
+//    },); TextField(
+//      onChanged: widget.onChange,
+//      onTap: () {},
+//      keyboardType: widget.tipoTeclado ,
+//      decoration: InputDecoration(
+//        labelStyle: TextStyle(
+//          color: Colors.black38,
+//          fontWeight: FontWeight.w400,
+//          fontSize: 20,
+//        ),
+//        labelText: "${widget.labelText}",
+//        prefixIcon: widget.icone,
+//        hintText: widget.hint,
+//        errorText: widget.errorText == null ? null : widget.errorText(),
+////              widget.errorText == null ? null : widget.errorText(),
+//      ),
+//    );
     return Container(
       child: Observer(
         builder: (_) {

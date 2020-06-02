@@ -1,12 +1,17 @@
 
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/controller/usuario-controller.dart';
 import 'package:clean_house/view/widgets/circulo-subpasso.dart';
 import 'package:clean_house/view/widgets/input-widget-generic.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 class Passo1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final UsuarioController userController = Provider.of<UsuarioController>(context);
+
     return  SizedBox(
       height: 335,
       child: Container(
@@ -30,7 +35,12 @@ class Passo1 extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             SizedBox(height: 20,),
-            InputGeneric(labelText: "Nome",),
+            Observer(builder: (_){
+              return InputGeneric(labelText: "Nome",
+                onChange: userController.usuario.changeNome,
+                errorText: userController.validaNome,
+              );
+            },),
             SizedBox(height: 15,),
             InputGeneric(labelText: "CPF",),
 
