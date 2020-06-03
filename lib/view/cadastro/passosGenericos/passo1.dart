@@ -13,7 +13,7 @@ class Passo1 extends StatelessWidget {
     final UsuarioController userController = Provider.of<UsuarioController>(context);
 
     return  SizedBox(
-      height: 335,
+      height: 365,
       child: Container(
 
         margin: EdgeInsets.only(left: 25, right: 25),
@@ -34,7 +34,7 @@ class Passo1 extends StatelessWidget {
         ),
         child: ListView(
           children: <Widget>[
-            SizedBox(height: 20,),
+            SizedBox(height: 5,),
             Observer(builder: (_){
               return InputGeneric(labelText: "Nome",
                 onChange: userController.usuario.changeNome,
@@ -42,11 +42,17 @@ class Passo1 extends StatelessWidget {
               );
             },),
             SizedBox(height: 15,),
-            InputGeneric(labelText: "CPF",),
+            InputGeneric(labelText: "CPF",
+              onChange: userController.usuario.changeNome,
+              errorText: userController.validaNome,
+            ),
 
             SizedBox(height: 15,),
-            InputGeneric(labelText: "Data Nascimento",),
-            SizedBox(height: 40,),
+            InputGeneric(labelText: "Data Nascimento",
+              onChange: userController.usuario.changeNome,
+              errorText: userController.validaNome,
+            ),
+            SizedBox(height: 20,),
             Container(
               height: 30,
               width: 50,

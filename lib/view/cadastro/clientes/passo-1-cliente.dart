@@ -1,12 +1,10 @@
-import 'package:clean_house/view/cadastro/passosGenericos/passo1.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
-import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/controller/passos-controller.dart';
 import 'package:clean_house/view/widgets/background.dart';
-import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
-import 'package:clean_house/view/widgets/buttons/input-email.dart';
-import 'package:clean_house/view/widgets/circulo-subpasso.dart';
-import 'package:clean_house/view/widgets/input-widget-generic.dart';
+
 
 
 class Passo1Cliente extends StatefulWidget {
@@ -21,12 +19,11 @@ class _Passo1Cliente extends State<Passo1Cliente> {
 
   @override
   Widget build(BuildContext context) {
-    print(inputEmail());
+    final passosController = Provider.of<PassosController>(context);
     return Scaffold(
       resizeToAvoidBottomInset : false,
 
       body: Container(
-//        padding: EdgeInsets.only(top: 30, left: 30, right: 30),
         decoration: Background.desenha("background-cinza2.png"),
         child: ListView(
           children: <Widget>[
@@ -53,23 +50,16 @@ class _Passo1Cliente extends State<Passo1Cliente> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 55,
-            ),
-            Passo1(),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              margin: EdgeInsets.all(35),
-              child: btnGeneric("CONTINUAR", myDarkBlue, null, null, 50.3),
+            SizedBox(height: 55,),
+            Observer(
+              builder: (_){
+                return Container(
+                  child: passosController.subPassoAtual,
+                ) ;
+              },
             )
-
-            //InputeGeneric(validacao: teste("este é p valor"),)
-
           ],
         ),
-        
       )
     );
   }
