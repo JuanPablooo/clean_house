@@ -1,8 +1,6 @@
-
-import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-abstract.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
-import 'package:clean_house/view/cadastro/passosGenericos/subPassos/subpasso11.dart';
+
 part 'passos-controller.g.dart';
 
 
@@ -24,6 +22,13 @@ abstract class _PassosControllerBase with Store{
   void trocaPasso(passoDesejado){
     passoAtual = passoDesejado;
   }
+
+  @observable
+  var caminhoImg;
+
+  @action
+  void trocacaminhoImg( caminhoImgDesejado ) => caminhoImg = caminhoImgDesejado;
+
 
 
 

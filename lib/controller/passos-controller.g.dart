@@ -39,6 +39,21 @@ mixin _$PassosController on _PassosControllerBase, Store {
     });
   }
 
+  final _$caminhoImgAtom = Atom(name: '_PassosControllerBase.caminhoImg');
+
+  @override
+  dynamic get caminhoImg {
+    _$caminhoImgAtom.reportRead();
+    return super.caminhoImg;
+  }
+
+  @override
+  set caminhoImg(dynamic value) {
+    _$caminhoImgAtom.reportWrite(value, super.caminhoImg, () {
+      super.caminhoImg = value;
+    });
+  }
+
   final _$_PassosControllerBaseActionController =
       ActionController(name: '_PassosControllerBase');
 
@@ -65,10 +80,22 @@ mixin _$PassosController on _PassosControllerBase, Store {
   }
 
   @override
+  void trocacaminhoImg(dynamic caminhoImgDesejado) {
+    final _$actionInfo = _$_PassosControllerBaseActionController.startAction(
+        name: '_PassosControllerBase.trocacaminhoImg');
+    try {
+      return super.trocacaminhoImg(caminhoImgDesejado);
+    } finally {
+      _$_PassosControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 subPassoAtual: ${subPassoAtual},
-passoAtual: ${passoAtual}
+passoAtual: ${passoAtual},
+caminhoImg: ${caminhoImg}
     ''';
   }
 }

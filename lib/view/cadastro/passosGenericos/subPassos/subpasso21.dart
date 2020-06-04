@@ -1,17 +1,18 @@
-
-import 'package:clean_house/constants/cores.dart';
-import 'package:clean_house/controller/passos-controller.dart';
-import 'package:clean_house/controller/usuario-controller.dart';
-import 'package:clean_house/view/cadastro/passosGenericos/passo2.dart';
-import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-abstract.dart';
-import 'package:clean_house/view/widgets/buttons/btn-continuar.dart';
-import 'package:clean_house/view/widgets/circulo-subpasso.dart';
-import 'package:clean_house/view/widgets/input-widget-generic.dart';
+import 'package:clean_house/view/cadastro/passosGenericos/subPassos/subpasso22.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
-class SubPasso3 extends StatelessWidget  implements SubPassAbstract{
+import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/controller/passos-controller.dart';
+import 'package:clean_house/controller/usuario-controller.dart';
+import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-abstract.dart';
+import 'package:clean_house/view/widgets/circulo-subpasso.dart';
+import 'package:clean_house/view/widgets/input-widget-generic.dart';
+import 'package:clean_house/view/widgets/buttons/btn-continuar.dart';
+
+
+class SubPasso2_1 extends StatelessWidget  implements SubPassAbstract{
   @override
   Widget build(BuildContext context) {
     final UsuarioController userController = Provider.of<UsuarioController>(context);
@@ -37,34 +38,31 @@ class SubPasso3 extends StatelessWidget  implements SubPassAbstract{
                   )
                 ]
             ),
-            child: ListView(
+            child:
+
+
+
+            ListView(
               children: <Widget>[
-                SizedBox(height: 5,),
-                Observer(builder: (_){
-                  return InputGeneric(labelText: "Email",
-                    onChange: userController.usuario.changeNome,
-                  );
-                },),
+                InputGeneric(labelText: "Cep", ),
                 SizedBox(height: 15,),
-                InputGeneric(labelText: "Senha",
-                  onChange: userController.usuario.changeNome,
-                ),
+                InputGeneric(labelText: "Bairro", ),
 
                 SizedBox(height: 15,),
-                InputGeneric(labelText: "Confirmar senha",
-                  onChange: userController.usuario.changeNome,
-                ),
+                InputGeneric(labelText: "Rua", ),
+
+                SizedBox(height: 15,),
+                InputGeneric(labelText: "Numero", ),
+
                 SizedBox(height: 20,),
                 Container(
                   height: 30,
                   width: 50,
                   child: Row(
-
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CirculoSubPasso(corCirculo: myBlue,),
-                      CirculoSubPasso(corCirculo: myBlue,),
-                      CirculoSubPasso(corCirculo: myBlue,),
+                      CirculoSubPasso(corCirculo: myDarkBlue,),
                     ],
                   ),
                 ),
@@ -81,8 +79,8 @@ class SubPasso3 extends StatelessWidget  implements SubPassAbstract{
           height: 50,
           width: 300,
           child: BtnContinuar(
-            onPress: passosController.trocaPasso,
-            proximoPasso: Passo2(),
+            onPress: passosController.trocaSubPasso,
+            proximoPasso: SubPasso2_2(),
 
           ),
         )

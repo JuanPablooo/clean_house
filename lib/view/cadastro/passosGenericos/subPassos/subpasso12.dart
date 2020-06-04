@@ -5,7 +5,6 @@ import 'package:clean_house/controller/usuario-controller.dart';
 import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-abstract.dart';
 import 'package:clean_house/view/cadastro/passosGenericos/subPassos/subpasso13.dart';
 import 'package:clean_house/view/widgets/buttons/btn-continuar.dart';
-import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
 import 'package:clean_house/view/widgets/circulo-subpasso.dart';
 import 'package:clean_house/view/widgets/input-widget-generic.dart';
 import 'package:flutter/material.dart';
@@ -19,23 +18,11 @@ class SubPasso2 extends StatefulWidget implements SubPassAbstract{
   }
 }
 class SubPasso2State extends State<SubPasso2> {
-//  List<RadioModel> botaoSexo = new List<RadioModel>();
-//  @override
-//  void initState() {
-//    // TODO: implement initState
-//    super.initState();
-//    botaoSexo.add(new RadioModel(false, 'A', 'April 18'));
-//    botaoSexo.add(new RadioModel(false, 'B', 'April 17'));
-//    botaoSexo.add(new RadioModel(false, 'C', 'April 16'));
-//    botaoSexo.add(new RadioModel(false, 'D', 'April 15'));
-//  }
 
   @override
   Widget build(BuildContext context) {
     final UsuarioController userController = Provider.of<UsuarioController>(context);
     final PassosController passosController = Provider.of<PassosController>(context);
-
-
 
     return  Column(
       children: <Widget>[
@@ -58,59 +45,120 @@ class SubPasso2State extends State<SubPasso2> {
                   )
                 ]
             ),
-            child: ListView(
+            child: Stack(
               children: <Widget>[
-                SizedBox(height: 5,),
-                Observer(builder: (_){
-                  return InputGeneric(labelText: "Telefone",
-                    onChange: userController.usuario.changeNome,
-                  );
-                },),
-                SizedBox(height: 15,),
-                InputGeneric(labelText: "Celular",
-                  onChange: userController.usuario.changeNome,
-                ),
-
-                SizedBox(height: 15,),
-                Text("SEXO"),
-                ButtonBar(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Radio(
-                      value: 1,
-                      groupValue: 1,
-                      activeColor: Colors.deepPurple,
-                      onChanged: (val){
-                        print("um foi escolhido $val");
-                      },
+                    InputGeneric(labelText: "Telefone",
                     ),
-                    Radio(
-                      value: 2,
-                      groupValue: 1,
-                      activeColor: Colors.deepPurple,
-                      onChanged: (val){
-                        print("um foi escolhido $val");
-                      },
+                    InputGeneric(labelText: "Celular",
+                    ),
+                    SizedBox(height: 25,),
+                    Text("Sexo", style: TextStyle(fontSize: 20, color: myDarkBlue),
+                    ),
+                    SizedBox(height: 10,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: myBlue,
+                                  border: Border.all(
+                                      color: myBlue
+                                  )
+                              ),
+                              child: FlatButton(
+                                child: Text(
+                                  "Feminino",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15
+                                  ),
+                                ),
+                                onPressed: (){
+                                  print("salvee");
+                                },
+                              ),
+                            ),
+                            SizedBox(width: 10,),
+                            Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: myBlue
+                                  )
+                              ),
+                              child: FlatButton(
+                                child: Text(
+                                  "Masculino",
+                                  style: TextStyle(
+                                      color: myBlue,
+                                      fontSize: 15
+                                  ),
+                                ),
+                                onPressed: (){
+                                  print("salvee");
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Container(
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(
+                              color: myBlue
+                            )
+                          ),
+                          child: FlatButton(
+                            child: Text(
+                              "Prefiro não informar",
+                              style: TextStyle(
+                                color: myBlue,
+                                fontSize: 15
+                              ),
+                            ),
+                            onPressed: (){
+                              print("salvee");
+                            },
+                          ),
+                        )
+
+                      ],
                     )
                   ],
                 ),
-                SizedBox(height: 20,),
-                Container(
-                  height: 30,
-                  width: 50,
-                  child: Row(
-
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      CirculoSubPasso(corCirculo: myBlue,),
-                      CirculoSubPasso(),
-                      CirculoSubPasso(),
-                    ],
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 30,
+                    width: 300,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CirculoSubPasso(corCirculo: myBlue,),
+                        CirculoSubPasso(corCirculo: myBlue,),
+                        CirculoSubPasso(corCirculo: myDarkBlue,),
+                      ],
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ),
         ),
+
+
         SizedBox(
           height: 25,
         ),
@@ -127,10 +175,4 @@ class SubPasso2State extends State<SubPasso2> {
     );
   }
 }
-class RadioModel {
-  bool isSelected;
-  final String buttonText;
-  final String text;
 
-  RadioModel(this.isSelected, this.buttonText, this.text);
-}

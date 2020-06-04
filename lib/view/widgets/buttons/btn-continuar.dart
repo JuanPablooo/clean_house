@@ -9,8 +9,9 @@ class BtnContinuar extends StatefulWidget {
   _BtnContinuarState createState() => _BtnContinuarState();
   Function onPress;
   SubPassAbstract proximoPasso;
+  String titulo;
 
-  BtnContinuar({this.onPress, this.proximoPasso});
+  BtnContinuar({this.onPress, this.proximoPasso, this.titulo="CONTINUAR"});
 
 }
 
@@ -30,7 +31,7 @@ class _BtnContinuarState extends State<BtnContinuar> {
       ),
       hoverElevation: 5,
       child: Text(
-        "continuar",
+        widget.titulo,
         style: TextStyle(
           color: Colors.white,
           fontSize: 20

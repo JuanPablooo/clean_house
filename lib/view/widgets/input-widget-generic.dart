@@ -1,3 +1,4 @@
+import 'package:clean_house/constants/cores.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -36,7 +37,7 @@ class _InputGenericState extends State<InputGeneric> {
             keyboardType: widget.tipoTeclado ,
             decoration: InputDecoration(
               labelStyle: TextStyle(
-                color: Colors.black38,
+                color: myDarkBlue,
                 fontWeight: FontWeight.w400,
                 fontSize: 20,
               ),
