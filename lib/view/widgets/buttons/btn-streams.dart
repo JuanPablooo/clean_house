@@ -4,37 +4,33 @@ import 'package:clean_house/view/cadastro/passosGenericos/subPassos/subpasso12.d
 import 'package:flutter/material.dart';
 
 
-class BtnContinuar extends StatefulWidget {
+class BtnStream extends StatefulWidget {
   @override
-  _BtnContinuarState createState() => _BtnContinuarState();
+  _BtnStreamState createState() => _BtnStreamState();
   var onPress;
   SubPassAbstract proximoPasso;
   String titulo;
 
-  BtnContinuar({this.onPress, this.proximoPasso, this.titulo="CONTINUAR"});
+  BtnStream({this.onPress, this.proximoPasso, this.titulo});
 
 }
 
-class _BtnContinuarState extends State<BtnContinuar> {
+class _BtnStreamState extends State<BtnStream> {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
       onPressed: (){
-        print("clicou no onpre");
-        print(widget.onPress);
-        print(widget.proximoPasso);
-        widget.onPress(widget.proximoPasso);
-        print("executou onpre");
+        widget.onPress();
       },
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15)
+          borderRadius: BorderRadius.circular(15)
       ),
       hoverElevation: 5,
       child: Text(
         widget.titulo,
         style: TextStyle(
-          color: Colors.white,
-          fontSize: 20
+            color: Colors.white,
+            fontSize: 20
         ),
       ),
       color: myDarkBlue,

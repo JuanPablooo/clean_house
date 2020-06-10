@@ -39,37 +39,34 @@ class SubPasso2_1 extends StatelessWidget  implements SubPassAbstract{
                 ]
             ),
             child:
+              ListView(
+                children: <Widget>[
+                  InputGeneric(labelText: "Cep", ),
+                  SizedBox(height: 15,),
+                  InputGeneric(labelText: "Bairro", ),
 
+                  SizedBox(height: 15,),
+                  InputGeneric(labelText: "Rua", ),
 
+                  SizedBox(height: 15,),
+                  InputGeneric(labelText: "Numero", ),
 
-            ListView(
-              children: <Widget>[
-                InputGeneric(labelText: "Cep", ),
-                SizedBox(height: 15,),
-                InputGeneric(labelText: "Bairro", ),
-
-                SizedBox(height: 15,),
-                InputGeneric(labelText: "Rua", ),
-
-                SizedBox(height: 15,),
-                InputGeneric(labelText: "Numero", ),
-
-                SizedBox(height: 20,),
-                Container(
-                  height: 30,
-                  width: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      CirculoSubPasso(corCirculo: myBlue,),
-                      CirculoSubPasso(corCirculo: myDarkBlue,),
-                    ],
+                  SizedBox(height: 20,),
+                  Container(
+                    height: 30,
+                    width: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CirculoSubPasso(corCirculo: myBlue,),
+                        CirculoSubPasso(corCirculo: myDarkBlue,),
+                      ],
+                    ),
                   ),
-                ),
 
 
-              ],
-            ),
+                ],
+              ),
           ),
         ),
         SizedBox(
