@@ -42,7 +42,6 @@ class SubPassoCliente3 extends StatelessWidget  implements SubPassAbstract{
             child:  Stack(
               children: <Widget>[
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     PegarImagen()
                   ],
