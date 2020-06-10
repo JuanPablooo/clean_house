@@ -27,6 +27,9 @@ dependencies:
   flutter_mobx:
   provider:
   email_validator: ^1.0.4
+  path_provider:
+  image_picker:
+  cached_network_image: any
 
 
   flutter_launcher_icons: "^0.7.0"

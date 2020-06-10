@@ -1,6 +1,8 @@
+
+
+import 'package:clean_house/view/cadastro/clientes/subPassos/escolher-foto.dart';
 import 'package:clean_house/view/cadastro/passosGenericos/subPassos/subpasso22.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import 'package:clean_house/constants/cores.dart';
@@ -8,7 +10,6 @@ import 'package:clean_house/controller/passos-controller.dart';
 import 'package:clean_house/controller/usuario-controller.dart';
 import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-abstract.dart';
 import 'package:clean_house/view/widgets/circulo-subpasso.dart';
-import 'package:clean_house/view/widgets/input-widget-generic.dart';
 import 'package:clean_house/view/widgets/buttons/btn-continuar.dart';
 
 
@@ -17,6 +18,7 @@ class SubPassoCliente3 extends StatelessWidget  implements SubPassAbstract{
   Widget build(BuildContext context) {
     final UsuarioController userController = Provider.of<UsuarioController>(context);
     final PassosController passosController = Provider.of<PassosController>(context);
+
 
     return  Column(
       children: <Widget>[
@@ -42,7 +44,7 @@ class SubPassoCliente3 extends StatelessWidget  implements SubPassAbstract{
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-
+                    PegarImagen()
                   ],
                 ),
                 Align(
@@ -70,8 +72,8 @@ class SubPassoCliente3 extends StatelessWidget  implements SubPassAbstract{
           width: 300,
           child: BtnContinuar(
             titulo: "FINALIZAR",
-            onPress: passosController.trocaSubPasso,
-            proximoPasso: SubPasso2_2(),
+//            onPress: passosController.trocaSubPasso,
+//            proximoPasso: SubPasso2_2(),
 
           ),
         )
