@@ -36,6 +36,20 @@ abstract class _Usuario with Store{
   @action
   changeCelular(String value)=>celular = value;
 
+  @observable
+  String telefone;
+  @action
+  changeTelefone(String value)=>telefone = value;
+
+  @observable
+  String cep;
+  @action
+  changeCep(String value)=>cep = value;
+
+  @observable
+  String bairro;
+  @action
+  changeBairro(String value)=>bairro = value;
 
 
 
