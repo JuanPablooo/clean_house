@@ -52,5 +52,33 @@ abstract class _Usuario with Store{
   changeBairro(String value)=>bairro = value;
 
 
+  @observable
+  String rua;
+  @action
+  changeRua(String value)=>rua = value;
+
+
+  @observable
+  String numero;
+  @action
+  changeNumero(String value)=>numero = value;
+
+  @observable
+  String cidade;
+  @action
+  changeCidade(String value)=>cidade = value;
+
+
+  @observable
+  String estado;
+  @action
+  changeEstado(String value)=>estado = value;
+
+
+  @observable
+  String complemenmto;
+  @action
+  changeComplemento(String value)=>complemenmto = value;
+
 
 }

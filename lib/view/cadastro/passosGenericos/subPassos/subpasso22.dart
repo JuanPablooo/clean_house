@@ -43,10 +43,10 @@ class SubPasso2_2 extends StatelessWidget  implements SubPassAbstract{
                   return InputGeneric(labelText: "Cidade", );
                 },),
                 SizedBox(height: 15,),
-                InputGeneric(labelText: "Bairro", ),
+                InputGeneric(labelText: "Estado", ),
 
                 SizedBox(height: 15,),
-                InputGeneric(labelText: "Rua", ),
+                InputGeneric(labelText: "Complemento", ),
 
                 SizedBox(height: 20,),
                 Container(
