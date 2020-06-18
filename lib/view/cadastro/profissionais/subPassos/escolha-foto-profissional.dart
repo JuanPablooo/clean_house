@@ -8,7 +8,6 @@ import 'package:clean_house/services/cliente-service.dart';
 import 'package:clean_house/view/cadastro/clientes/subPassos/escolher-foto.dart';
 import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-abstract.dart';
 import 'package:clean_house/view/widgets/buttons/btn-continuar.dart';
-import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
 import 'package:clean_house/view/widgets/circulo-subpasso.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,9 +19,10 @@ class EscolhaFotoProfissional extends StatefulWidget implements SubPassAbstract{
 ClienteService clienteApi = ClienteService();
   void mostraUsuario( Usuario user){
    print("salveeeee");
-//   JsonCodec(user.criaJsonCliente(user));
-    //var response = clienteApi.insereCliente();
-    //print(response);
+//   var json = JsonCodec(user.criaJsonCliente(user));
+//    var jsons = json.decode(source)
+//    var response = clienteApi.insereCliente();
+//    print(response);
    print("salveeeee=-=-=-=-=-=--");
   }
 

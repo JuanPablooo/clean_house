@@ -118,4 +118,23 @@ abstract class _Usuario with Store{
     return jsonProfissional;
   }
 
+  Map<String, dynamic> toJson(Usuario user) {
+    Map<String, dynamic> UsertoJson() {
+      final Map<String, dynamic> data = new Map<String, dynamic>();
+      data['email'] = this.email;
+      data['senha'] = this.senha;
+      return data;
+    }
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['usuario'] = UsertoJson();
+    data['nomeCompleto'] = this.nome;
+    data['dataNascimento'] = this.dataNascimento;
+    data['cpf'] = this.cpf;
+    data['fotoPerfil'] = this.fotoPerfil;
+    data['telefoneFixo'] = this.telefone;
+    data['celular'] = this.celular;
+    return data;
+  }
+
+
 }
