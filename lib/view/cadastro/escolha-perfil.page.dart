@@ -1,14 +1,20 @@
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/controller/passos-controller.dart';
+import 'package:clean_house/view/cadastro/clientes/passo-3-cliente.dart';
+import 'package:clean_house/view/cadastro/profissionais/passo-3-profissional.dart';
+import 'package:clean_house/view/cadastro/profissionais/passo-1-profissional.dart';
 import 'package:clean_house/view/login.page.dart';
 import 'package:clean_house/view/widgets/background.dart';
 import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
 import 'package:clean_house/view/cadastro/clientes/passo-1-cliente.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class EscolhaPerfil extends StatelessWidget{
   @override
   Widget build(BuildContext context){
+    final PassosController passosController = Provider.of<PassosController>(context);
     var  entrarPage = () {
       Navigator.push(
           context,
@@ -16,16 +22,18 @@ class EscolhaPerfil extends StatelessWidget{
           builder: (BuildContext context)=> LoginPage()));
     };
     var  cadastroCliente = () {
+      passosController.trocaPasso3(Passo3Cliente());
       Navigator.push(
           context,
           MaterialPageRoute(
           builder: (BuildContext context)=> Passo1Cliente()));
     };
     var  cadastroProfissional = () {
+      passosController.trocaPasso3(Passo3Profissional());
       Navigator.push(
           context,
           MaterialPageRoute(
-          builder: (BuildContext context)=> LoginPage()));
+          builder: (BuildContext context)=> PrimeirosPassosProfissional()));
     };
     return Scaffold(
       appBar: AppBar(
@@ -76,7 +84,7 @@ class EscolhaPerfil extends StatelessWidget{
                             width: 100,
                             child: Image.asset("assets/funcionaria.png"),
                           ),
-                          btnGeneric("PROFISSIONAL", myDarkBlue, null, null, 200.0)
+                          btnGeneric("PROFISSIONAL", myDarkBlue, cadastroProfissional, null, 200.0)
                         ],
                       )
                     ),

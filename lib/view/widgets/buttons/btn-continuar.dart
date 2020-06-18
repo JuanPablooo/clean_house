@@ -20,10 +20,12 @@ class _BtnContinuarState extends State<BtnContinuar> {
   Widget build(BuildContext context) {
     return RaisedButton(
       onPressed: (){
-        print("clicou no onpre");
-        print(widget.onPress);
-        print(widget.proximoPasso);
-        widget.onPress(widget.proximoPasso);
+        if(widget.proximoPasso != null){
+          widget.onPress(widget.proximoPasso);
+        }else{
+          widget.onPress();
+        }
+
         print("executou onpre");
       },
       shape: RoundedRectangleBorder(

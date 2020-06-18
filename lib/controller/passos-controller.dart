@@ -22,6 +22,13 @@ abstract class _PassosControllerBase with Store{
   void trocaPasso(passoDesejado){
     passoAtual = passoDesejado;
   }
+  @observable
+  var passo3;
+
+  @action
+  void trocaPasso3(passo3Desejado){
+    passo3 = passo3Desejado;
+  }
 
   @observable
   var caminhoImg;

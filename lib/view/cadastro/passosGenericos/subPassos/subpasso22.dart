@@ -72,7 +72,7 @@ class SubPasso2_2 extends StatelessWidget  implements SubPassAbstract{
           width: 300,
           child: BtnContinuar(
             onPress: passosController.trocaPasso,
-            proximoPasso: Passo3Cliente(),
+            proximoPasso: passosController.passo3,
           ),
         )
       ],

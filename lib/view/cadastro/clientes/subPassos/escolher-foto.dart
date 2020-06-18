@@ -64,7 +64,8 @@ class _PegarImagenState extends State<PegarImagen> {
               width: 100,
               child: _imagem,
             ),
-          )
+          ),
+          Text('este item não é obrigatório')
         ],
       ),
     );

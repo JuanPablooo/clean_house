@@ -68,6 +68,11 @@ abstract class _Usuario with Store{
   @action
   changeCidade(String value)=>cidade = value;
 
+  @observable
+  String fotoPerfil;
+  @action
+  changeFotoPerfil(String value)=>fotoPerfil = value;
+
 
   @observable
   String estado;
@@ -80,5 +85,37 @@ abstract class _Usuario with Store{
   @action
   changeComplemento(String value)=>complemenmto = value;
 
+  criaJsonCliente(Usuario user){
+    Map jsonCliente = {
+        "usuario":{
+          "email": "${user.email}",
+          "senha": "${user.senha}",
+          "tipo": "cliente"
+        },
+        "nomeCompleto": "${user.nome}",
+        "dataNascimento": "1998-06-19",
+        "cpf": "${user.cpf}",
+        "fotoPerfil": "${user.fotoPerfil}",
+        "telefoneFixo": "${user.telefone}",
+        "celular": "${user.celular}"
+      };
+    return jsonCliente;
+  }
+  criaJsonProfissional(Usuario user){
+    Map jsonProfissional = {
+        "usuario":{
+          "email": "${user.email}",
+          "senha": "${user.senha}",
+          "tipo": "profissional"
+        },
+        "nomeCompleto": "${user.nome}",
+        "dataNascimento": "1998-06-19",
+        "cpf": "${user.cpf}",
+        "fotoPerfil": "${user.fotoPerfil}",
+        "telefoneFixo": "${user.telefone}",
+        "celular": "${user.celular}"
+      };
+    return jsonProfissional;
+  }
 
 }
