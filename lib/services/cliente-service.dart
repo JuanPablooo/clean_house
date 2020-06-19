@@ -1,11 +1,11 @@
-import 'package:http/http.dart' as http;
-
+import 'dart:collection';
+import 'package:clean_house/services/api-config.dart';
 
 
 class ClienteService {
-  String url = 'http://192.168.15.10:8080/v1/clientes';
+  var resource = 'clientes';
   insereCliente(client) async{
-    var response = await http.post(url, body: client);
+    var response = await MyApi.insere(resource, client) ;
     return response;
   }
 }

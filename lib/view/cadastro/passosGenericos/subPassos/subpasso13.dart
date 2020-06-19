@@ -42,17 +42,16 @@ class SubPasso3 extends StatelessWidget  implements SubPassAbstract{
                 SizedBox(height: 5,),
                 Observer(builder: (_){
                   return InputGeneric(labelText: "Email",
-                    onChange: userController.usuario.changeNome,
+                    onChange: userController.usuario.changeEmail,
                   );
                 },),
                 SizedBox(height: 15,),
                 InputGeneric(labelText: "Senha",
-                  onChange: userController.usuario.changeNome,
+                  onChange: userController.usuario.changeSenha,
                 ),
 
                 SizedBox(height: 15,),
                 InputGeneric(labelText: "Confirmar senha",
-                  onChange: userController.usuario.changeNome,
                 ),
                 SizedBox(height: 20,),
                 Container(

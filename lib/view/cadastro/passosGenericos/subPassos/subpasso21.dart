@@ -41,15 +41,15 @@ class SubPasso2_1 extends StatelessWidget  implements SubPassAbstract{
             child:
               ListView(
                 children: <Widget>[
-                  InputGeneric(labelText: "Cep", ),
+                  InputGeneric(labelText: "Cep", onChange: userController.usuario.changeCep,),
                   SizedBox(height: 15,),
-                  InputGeneric(labelText: "Bairro", ),
+                  InputGeneric(labelText: "Bairro", onChange: userController.usuario.changeBairro, ),
 
                   SizedBox(height: 15,),
-                  InputGeneric(labelText: "Rua", ),
+                  InputGeneric(labelText: "Rua", onChange: userController.usuario.changeRua,),
 
                   SizedBox(height: 15,),
-                  InputGeneric(labelText: "Numero", ),
+                  InputGeneric(labelText: "Numero", onChange: userController.usuario.changeNumero,),
 
                   SizedBox(height: 20,),
                   Container(

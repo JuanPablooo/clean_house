@@ -45,8 +45,11 @@ class SubPasso1 extends StatelessWidget implements SubPassAbstract{
                       onChange: userController.usuario.changeNome,
                       errorText: userController.validaNome,
                     ),
-                    InputGeneric(labelText: "Data Nascimento",),
-                    InputGeneric(labelText: "CPF",),
+                    InputGeneric(labelText: "Data Nascimento",
+                      onChange: userController.usuario.changeDataNascimento),
+                    InputGeneric(labelText: "CPF",
+                    onChange: userController.usuario.changeCpf,
+                    ),
                   ],
                 ),
                 Align(

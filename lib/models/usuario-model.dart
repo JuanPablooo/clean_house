@@ -85,40 +85,7 @@ abstract class _Usuario with Store{
   @action
   changeComplemento(String value)=>complemenmto = value;
 
-  criaJsonCliente(Usuario user){
-    Map jsonCliente = {
-        "usuario":{
-          "email": "${user.email}",
-          "senha": "${user.senha}",
-          "tipo": "cliente"
-        },
-        "nomeCompleto": "${user.nome}",
-        "dataNascimento": "1998-06-19",
-        "cpf": "${user.cpf}",
-        "fotoPerfil": "${user.fotoPerfil}",
-        "telefoneFixo": "${user.telefone}",
-        "celular": "${user.celular}"
-      };
-    return jsonCliente;
-  }
-  criaJsonProfissional(Usuario user){
-    Map jsonProfissional = {
-        "usuario":{
-          "email": "${user.email}",
-          "senha": "${user.senha}",
-          "tipo": "profissional"
-        },
-        "nomeCompleto": "${user.nome}",
-        "dataNascimento": "1998-06-19",
-        "cpf": "${user.cpf}",
-        "fotoPerfil": "${user.fotoPerfil}",
-        "telefoneFixo": "${user.telefone}",
-        "celular": "${user.celular}"
-      };
-    return jsonProfissional;
-  }
-
-  Map<String, dynamic> toJson(Usuario user) {
+  Map<String, dynamic> toJson() {
     Map<String, dynamic> UsertoJson() {
       final Map<String, dynamic> data = new Map<String, dynamic>();
       data['email'] = this.email;

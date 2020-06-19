@@ -51,9 +51,9 @@ class SubPasso2State extends State<SubPasso2> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    InputGeneric(labelText: "Telefone",
+                    InputGeneric(labelText: "Telefone", onChange: userController.usuario.changeTelefone,
                     ),
-                    InputGeneric(labelText: "Celular",
+                    InputGeneric(labelText: "Celular", onChange: userController.usuario.changeCelular,
                     ),
                     SizedBox(height: 25,),
                     Text("Sexo", style: TextStyle(fontSize: 20, color: myDarkBlue),

@@ -40,13 +40,13 @@ class SubPasso2_2 extends StatelessWidget  implements SubPassAbstract{
               children: <Widget>[
                 SizedBox(height: 5,),
                 Observer(builder: (_){
-                  return InputGeneric(labelText: "Cidade", );
+                  return InputGeneric(labelText: "Cidade", onChange: userController.usuario.changeCidade,);
                 },),
                 SizedBox(height: 15,),
-                InputGeneric(labelText: "Estado", ),
+                InputGeneric(labelText: "Estado", onChange: userController.usuario.changeEstado,),
 
                 SizedBox(height: 15,),
-                InputGeneric(labelText: "Complemento", ),
+                InputGeneric(labelText: "Complemento", onChange: userController.usuario.changeComplemento,),
 
                 SizedBox(height: 20,),
                 Container(

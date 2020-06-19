@@ -1,36 +1,50 @@
 import 'dart:convert';
+import 'package:clean_house/view/home/home-page.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
 import 'package:clean_house/constants/cores.dart';
 import 'package:clean_house/controller/passos-controller.dart';
 import 'package:clean_house/controller/usuario-controller.dart';
 import 'package:clean_house/models/usuario-model.dart';
-import 'package:clean_house/services/cliente-service.dart';
+import 'package:clean_house/services/profissional-service.dart';
 import 'package:clean_house/view/cadastro/clientes/subPassos/escolher-foto.dart';
 import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-abstract.dart';
 import 'package:clean_house/view/widgets/buttons/btn-continuar.dart';
 import 'package:clean_house/view/widgets/circulo-subpasso.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class EscolhaFotoProfissional extends StatefulWidget implements SubPassAbstract{
   @override
   _EscolhaFotoProfissionalState createState() => _EscolhaFotoProfissionalState();
 }
-ClienteService clienteApi = ClienteService();
-  void mostraUsuario( Usuario user){
-   print("salveeeee");
-//   var json = JsonCodec(user.criaJsonCliente(user));
-//    var jsons = json.decode(source)
-//    var response = clienteApi.insereCliente();
-//    print(response);
-   print("salveeeee=-=-=-=-=-=--");
-  }
 
 class _EscolhaFotoProfissionalState extends State<EscolhaFotoProfissional> {
   @override
   Widget build(BuildContext context) {
     final UsuarioController userController = Provider.of<UsuarioController>(context);
     final PassosController passosController = Provider.of<PassosController>(context);
+    ProfissionalService profissionalApi = ProfissionalService();
+
+  void salvaProfissional ( Usuario user) async{
+   print('=-=-=-=-=-=--=-=--=-=--=-=-=-');
+   String opJson = json.encode(user.toJson());
+   Response response = await profissionalApi.insereProfissional(opJson);
+   if(response.statusCode == 201){
+     Navigator.push(
+          context,
+          MaterialPageRoute(
+          builder: (BuildContext context)=> HomePage()));
+   }
+   else{
+     print("nao fez o cadastro");
+     //TODO mostrar a falha no cadastro para o usuario
+   }
+  }
+
+
+
     return Column(
       children: <Widget>[
         SizedBox(
@@ -85,7 +99,7 @@ class _EscolhaFotoProfissionalState extends State<EscolhaFotoProfissional> {
           child: BtnContinuar(
             titulo: "Finalizar",
 
-            onPress: ()=>{mostraUsuario(userController.usuario)},
+            onPress: ()=>{salvaProfissional(userController.usuario)},
           ),
         )
       ],
