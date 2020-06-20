@@ -2,11 +2,8 @@
 ![](assets/prints/cadastro.png)
 
 ![](assets/prints/cadastro1.png)
-
 ![](assets/prints/cadastro2.png)
-
 ![](assets/prints/cadastro3.png)
-
 ![](assets/prints/cadastropreview.png)
 
 Uma aplicação feita com Flutter.
