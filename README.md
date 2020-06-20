@@ -1,16 +1,20 @@
 # clean_house
+![](assets/prints/cadastro.png)
 
-A new Flutter application.
+![](assets/prints/cadastro1.png)
 
-## Getting Started
+![](assets/prints/cadastro2.png)
 
-This project is a starting point for a Flutter application.
+![](assets/prints/cadastro3.png)
 
-A few resources to get you started if this is your first Flutter project:
+![](assets/prints/cadastropreview.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Uma aplicação feita com Flutter.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+este projeto esta sendo construido para o tcc do curso desenvolvimento de sistemas no senai.
+## Sobre o projeto
+clean house é um aplicativo que visa intermediar e ligar pessoas que desejam realizar
+serviços com pessoas que desejam trabalhar em serviços domésticos.
+
+
+

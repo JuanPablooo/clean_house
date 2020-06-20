@@ -19,14 +19,36 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  mobx:
+  flutter_mobx:
+  provider:
+  email_validator: ^1.0.4
+  path_provider:
+  image_picker:
+  cached_network_image: any
+  http: 0.12.1
+
+
+
+  flutter_launcher_icons: "^0.7.0"
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/icon.png"
+  image_path_android: "assets/launcher/icon.png"
+  adaptive_icon_background: "assets/launcher/logo.png"
+  adaptive_icon_foreground: "assets/launcher/foreground.png"
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_svg: ^0.17.4
+  mobx_codegen:
+  build_runner:
+
 
 
 # For information on the generic Dart part of this file, see the
@@ -41,15 +63,18 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/facebook.png
-    - assets/fb-icon.png
-    - assets/marcas-e-logotipos.png
-    - assets/reset-password-icon.png
-    - assets/logo.png
-    - assets/cliente.png
-    - assets/funcionaria.png
-    - assets/casa.png
-    - assets/contatos.png
+    - assets/
+#    - assets/fb-icon.png
+#    - assets/marcas-e-logotipos.png
+#    - assets/reset-password-icon.png
+#    - assets/logo.png
+#    - assets/background.png
+#    - assets/cliente.png
+#    - assets/funcionaria.png
+#    - assets/casa.png
+#    - assets/contatos.png
+#    - assets/launcher/logo.png
+#    - assets/launcher/foreground.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
