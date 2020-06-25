@@ -6,7 +6,7 @@ class Background{
 
       image: DecorationImage(
           image: AssetImage("assets/$nome"),
-          fit: BoxFit.fill
+          fit: BoxFit.cover
       ),
     );
   }

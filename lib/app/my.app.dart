@@ -1,3 +1,4 @@
+import 'package:clean_house/view/home/home-page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: LoginPage(),
+        // home: LoginPage(),
+        home: HomePage(),
       ),
     );
 

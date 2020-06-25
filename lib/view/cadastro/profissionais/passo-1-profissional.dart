@@ -12,7 +12,7 @@ class _PrimeirosPassosProfissionalState extends State<PrimeirosPassosProfissiona
   Widget build(BuildContext context) {
     final passosController = Provider.of<PassosController>(context);
     return Scaffold(
-        resizeToAvoidBottomInset : false,
+        // resizeToAvoidBottomInset : false,
         body: Observer(
           builder: (_){
             return Container( child: passosController.passoAtual );
