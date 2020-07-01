@@ -13,18 +13,15 @@ class Passo1Cliente extends StatefulWidget {
 }
 
 class _Passo1Cliente extends State<Passo1Cliente> {
-
   @override
   Widget build(BuildContext context) {
     final passosController = Provider.of<PassosController>(context);
     return Scaffold(
-      resizeToAvoidBottomInset : false,
-      body: Observer(
-        builder: (_){
-          return Container( child: passosController.passoAtual );
-        },
-      )
-    );
+        // resizeToAvoidBottomInset: false,
+        body: Observer(
+      builder: (_) {
+        return Container(child: passosController.passoAtual);
+      },
+    ));
   }
 }
-

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:clean_house/view/home/home-page.dart';
+import 'package:clean_house/view/home/home-page-cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
@@ -14,36 +14,35 @@ import 'package:clean_house/view/cadastro/passosGenericos/subPassos/sub-passo-ab
 import 'package:clean_house/view/widgets/buttons/btn-continuar.dart';
 import 'package:clean_house/view/widgets/circulo-subpasso.dart';
 
-
-class EscolhaFotoProfissional extends StatefulWidget implements SubPassAbstract{
+class EscolhaFotoProfissional extends StatefulWidget
+    implements SubPassAbstract {
   @override
-  _EscolhaFotoProfissionalState createState() => _EscolhaFotoProfissionalState();
+  _EscolhaFotoProfissionalState createState() =>
+      _EscolhaFotoProfissionalState();
 }
 
 class _EscolhaFotoProfissionalState extends State<EscolhaFotoProfissional> {
   @override
   Widget build(BuildContext context) {
-    final UsuarioController userController = Provider.of<UsuarioController>(context);
-    final PassosController passosController = Provider.of<PassosController>(context);
+    final UsuarioController userController =
+        Provider.of<UsuarioController>(context);
+    final PassosController passosController =
+        Provider.of<PassosController>(context);
     ProfissionalService profissionalApi = ProfissionalService();
 
-  void salvaProfissional ( Usuario user) async{
-   print('=-=-=-=-=-=--=-=--=-=--=-=-=-');
-   String opJson = json.encode(user.toJson());
-   Response response = await profissionalApi.insereProfissional(opJson);
-   if(response.statusCode == 201){
-     Navigator.push(
-          context,
-          MaterialPageRoute(
-          builder: (BuildContext context)=> HomePage()));
-   }
-   else{
-     print("nao fez o cadastro");
-     //TODO mostrar a falha no cadastro para o usuario
-   }
-  }
-
-
+    void salvaProfissional(Usuario user) async {
+      print('=-=-=-=-=-=--=-=--=-=--=-=-=-');
+      String opJson = json.encode(user.toJson());
+      Response response = await profissionalApi.insereProfissional(opJson);
+      if (response.statusCode == 201) {
+        //direcionar para a home do profissional
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      } else {
+        print("nao fez o cadastro");
+        //TODO mostrar a falha no cadastro para o usuario
+      }
+    }
 
     return Column(
       children: <Widget>[
@@ -57,18 +56,16 @@ class _EscolhaFotoProfissionalState extends State<EscolhaFotoProfissional> {
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 boxShadow: [
                   BoxShadow(
-                      offset: Offset(5,5),
+                      offset: Offset(5, 5),
                       blurRadius: 10.0,
                       spreadRadius: .8,
-                      color: Colors.grey
-                  ),
-                ]
-            ),
-            child:   Stack(
+                      color: Colors.grey),
+                ]),
+            child: Stack(
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                   PegarImagen(),
+                    PegarImagen(),
                   ],
                 ),
                 Align(
@@ -79,9 +76,15 @@ class _EscolhaFotoProfissionalState extends State<EscolhaFotoProfissional> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        CirculoSubPasso(corCirculo: myBlue,),
-                        CirculoSubPasso(corCirculo: myBlue,),
-                        CirculoSubPasso(corCirculo: myBlue,),
+                        CirculoSubPasso(
+                          corCirculo: myBlue,
+                        ),
+                        CirculoSubPasso(
+                          corCirculo: myBlue,
+                        ),
+                        CirculoSubPasso(
+                          corCirculo: myBlue,
+                        ),
                       ],
                     ),
                   ),
@@ -98,12 +101,10 @@ class _EscolhaFotoProfissionalState extends State<EscolhaFotoProfissional> {
           width: 300,
           child: BtnContinuar(
             titulo: "Finalizar",
-
-            onPress: ()=>{salvaProfissional(userController.usuario)},
+            onPress: () => {salvaProfissional(userController.usuario)},
           ),
         )
       ],
     );
   }
 }
-

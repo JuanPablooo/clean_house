@@ -36,9 +36,9 @@ Container btnGeneric(titulo, cor, funcao, imgName, widthBtn){
     borderRadius: BorderRadius.all(Radius.circular(18)),
 
   ),
-  child: FlatButton(onPressed: ()=>{
+  child: FlatButton(onPressed: (){
     if(funcao != null){
-      funcao()
+      funcao();
     }
 
   },

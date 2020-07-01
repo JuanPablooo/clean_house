@@ -7,52 +7,51 @@ import 'package:clean_house/controller/passos-controller.dart';
 import 'package:clean_house/controller/usuario-controller.dart';
 import 'package:clean_house/view/widgets/background.dart';
 
-
-class Passo1 extends StatelessWidget implements SubPassAbstract{
+class Passo1 extends StatelessWidget implements SubPassAbstract {
   @override
   Widget build(BuildContext context) {
-    final UsuarioController userController = Provider.of<UsuarioController>(context);
+    final UsuarioController userController =
+        Provider.of<UsuarioController>(context);
     final passosController = Provider.of<PassosController>(context);
     passosController.trocacaminhoImg("assets/passo1c.png");
 
-
-    return  Observer(
-      builder: (_) {
-        return Container(
-          decoration: Background.desenha("background-cinza2.png"),
-          child: ListView(
-            children: <Widget>[
-              SizedBox(
-                height: 80,
-                child: Container(
-                  padding: EdgeInsets.only(left: 20),
-                  alignment: Alignment.topLeft,
-                  child: SizedBox(
-                    height: 30,
-                    width: 30,
-                    child: Image.asset("assets/icon-voltar.png"),
-                  ),
+    return Observer(builder: (_) {
+      return Container(
+        decoration: Background.desenha("background-cinza2.png"),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(
+              height: 80,
+              child: Container(
+                padding: EdgeInsets.only(left: 20),
+                alignment: Alignment.topLeft,
+                child: SizedBox(
+                  height: 30,
+                  width: 30,
+                  child: Image.asset("assets/icon-voltar.png"),
                 ),
               ),
-              SizedBox(
-                height: 50,
-                width: 50,
-                child: Container(
-                  child: SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: Image.asset(passosController.caminhoImg),
-                  ),
+            ),
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Container(
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: Image.asset(passosController.caminhoImg),
                 ),
               ),
-              SizedBox(height: 55,),
-              Container(
-                child: passosController.subPassoAtual,
-              )
-            ],
-          ),
-        );
-      }
-    );
+            ),
+            SizedBox(
+              height: 55,
+            ),
+            Container(
+              child: passosController.subPassoAtual,
+            )
+          ],
+        ),
+      );
+    });
   }
 }
