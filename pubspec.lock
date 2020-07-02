@@ -216,6 +216,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.5"
+  flutter_masked_text:
+    dependency: "direct main"
+    description:
+      name: flutter_masked_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.0"
   flutter_mobx:
     dependency: "direct main"
     description:
@@ -242,6 +249,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_validate:
+    dependency: "direct main"
+    description:
+      name: flutter_validate
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   glob:
     dependency: transitive
     description:
@@ -311,7 +325,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.15.8"
   io:
     dependency: transitive
     description:
@@ -340,13 +354,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.11.4"
-  masked_text:
-    dependency: "direct main"
-    description:
-      name: masked_text
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.6"
   matcher:
     dependency: transitive
     description:

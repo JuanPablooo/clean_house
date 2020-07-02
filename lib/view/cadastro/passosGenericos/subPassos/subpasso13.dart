@@ -10,7 +10,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
-class SubPasso3 extends StatelessWidget implements SubPassAbstract {
+class SubPasso3 extends StatefulWidget implements SubPassAbstract {
+  @override
+  _SubPasso3State createState() => _SubPasso3State();
+}
+
+class _SubPasso3State extends State<SubPasso3> {
+  var validaEmail = false;
+  var validaSenha = false;
+  setValidaEmail() {
+    setState(() {
+      validaEmail = true;
+    });
+  }
+
+  setValidaSenha() {
+    setState(() {
+      validaSenha = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final UsuarioController userController =
@@ -43,7 +62,11 @@ class SubPasso3 extends StatelessWidget implements SubPassAbstract {
                   builder: (_) {
                     return InputGeneric(
                       labelText: "Email",
+                      tipoTeclado: TextInputType.emailAddress,
                       onChange: userController.usuario.changeEmail,
+                      onTap: setValidaEmail,
+                      errorText:
+                          validaEmail ? userController.validaEmail : null,
                     );
                   },
                 ),
@@ -51,8 +74,10 @@ class SubPasso3 extends StatelessWidget implements SubPassAbstract {
                   height: 15,
                 ),
                 InputGeneric(
-                  labelText: "Senhaa",
+                  labelText: "Senha",
                   onChange: userController.usuario.changeSenha,
+                  onTap: setValidaSenha,
+                  errorText: validaSenha ? userController.validaSenha : null,
                   senha: true,
                 ),
                 SizedBox(

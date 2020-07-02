@@ -9,8 +9,36 @@ import 'package:clean_house/view/widgets/input-widget-generic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
-class SubPasso1 extends StatelessWidget implements SubPassAbstract {
+class SubPasso1 extends StatefulWidget implements SubPassAbstract {
+  @override
+  _SubPasso1State createState() => _SubPasso1State();
+}
+
+class _SubPasso1State extends State<SubPasso1> {
+  var validaNome = false;
+  var validaDataNascimento = false;
+  var validaCpf = false;
+
+  setValidaNome() {
+    setState(() {
+      validaNome = true;
+    });
+  }
+
+  setValidaDataNascimento() {
+    setState(() {
+      validaDataNascimento = true;
+    });
+  }
+
+  setValidaCpf() {
+    setState(() {
+      validaCpf = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final UsuarioController userController =
@@ -41,14 +69,26 @@ class SubPasso1 extends StatelessWidget implements SubPassAbstract {
                     InputGeneric(
                       labelText: "Nome",
                       onChange: userController.usuario.changeNome,
-                      errorText: userController.validaNome,
+                      errorText: validaNome ? userController.validaNome : null,
+                      onTap: setValidaNome,
                     ),
                     InputGeneric(
-                        labelText: "Data Nascimento",
-                        onChange: userController.usuario.changeDataNascimento),
+                      labelText: "Data Nascimento",
+                      controller: MaskedTextController(mask: '00-00-0000'),
+                      tipoTeclado: TextInputType.number,
+                      onChange: userController.usuario.changeDataNascimento,
+                      errorText: validaDataNascimento
+                          ? userController.validaData
+                          : null,
+                      onTap: setValidaDataNascimento,
+                    ),
                     InputGeneric(
                       labelText: "CPF",
+                      controller: MaskedTextController(mask: '000.000.000-00'),
+                      tipoTeclado: TextInputType.number,
                       onChange: userController.usuario.changeCpf,
+                      errorText: validaCpf ? userController.validaCpf : null,
+                      onTap: setValidaCpf,
                     ),
                   ],
                 ),

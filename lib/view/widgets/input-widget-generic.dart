@@ -15,6 +15,8 @@ class InputGeneric extends StatefulWidget {
   Icon icone;
   String hint;
   bool senha;
+  var controller;
+  Function onTap;
 
   InputGeneric(
       {@required this.labelText,
@@ -23,23 +25,21 @@ class InputGeneric extends StatefulWidget {
       String Function() this.errorText,
       String this.hint,
       bool this.senha = false,
+      this.controller,
+      this.onTap,
       Icon this.icone});
 }
 
 class _InputGenericState extends State<InputGeneric> {
   @override
   Widget build(BuildContext context) {
-    // if (widget.senha == 'senha') {
-    //   print("senha");
-    // } else {
-    //   print('nao nulo');
-    // }
     return Container(
       child: Observer(
         builder: (_) {
           return TextField(
+            controller: widget.controller,
             onChanged: widget.onChange,
-            onTap: () {},
+            onTap: widget.onTap,
             obscureText: widget.senha, //== null ? false : true,
             keyboardType: widget.tipoTeclado,
             decoration: InputDecoration(
@@ -51,6 +51,7 @@ class _InputGenericState extends State<InputGeneric> {
               labelText: "${widget.labelText}",
               prefixIcon: widget.icone,
               hintText: widget.hint,
+
               errorText: widget.errorText == null ? null : widget.errorText(),
 //              widget.errorText == null ? null : widget.errorText(),
             ),
