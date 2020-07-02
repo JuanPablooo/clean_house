@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class CampoEndereco extends StatefulWidget {
+class CampoInfoTitleValue extends StatefulWidget {
   double width;
   double height;
   String name;
   String value;
 
-  CampoEndereco({Key key, this.width, this.height, this.name, this.value})
+  CampoInfoTitleValue({Key key, this.width, this.height, this.name, this.value})
       : super(key: key);
 
   @override
-  _CampoEnderecoState createState() => _CampoEnderecoState();
+  _CampoInfoTitleValueState createState() => _CampoInfoTitleValueState();
 }
 
-class _CampoEnderecoState extends State<CampoEndereco> {
+class _CampoInfoTitleValueState extends State<CampoInfoTitleValue> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -97,7 +97,8 @@ class _EnderecoClienteState extends State<EnderecoCliente> {
                         SizedBox(
                           height: alturaTela * .03,
                         ),
-                        CampoEndereco(
+
+                        CampoInfoTitleValue(
                           name: 'Rua:',
                           value: 'Regina Lucia',
                           height: alturaTela * .07,
@@ -106,7 +107,7 @@ class _EnderecoClienteState extends State<EnderecoCliente> {
                         SizedBox(
                           height: alturaTela * .03,
                         ),
-                        CampoEndereco(
+                        CampoInfoTitleValue(
                           name: 'Bairro:',
                           value: 'KM 18',
                           height: alturaTela * .07,
@@ -115,7 +116,7 @@ class _EnderecoClienteState extends State<EnderecoCliente> {
                         SizedBox(
                           height: alturaTela * .03,
                         ),
-                        CampoEndereco(
+                        CampoInfoTitleValue(
                           name: 'Cidade:',
                           value: 'Osasco',
                           height: alturaTela * .07,

@@ -1,7 +1,7 @@
 import 'package:clean_house/constants/cores.dart';
 import 'package:clean_house/view/endereco/endereco-cliente.dart';
 import 'package:clean_house/view/home/home-page-cliente.dart';
-import 'package:clean_house/view/servicos/novo-servico.dart';
+import 'package:clean_house/view/perfil/perfil-cliente.dart';
 import 'package:clean_house/view/widgets/btn-generic.dart';
 import 'package:flutter/material.dart';
 
@@ -29,10 +29,13 @@ class MyDrawerMenuCliente extends StatelessWidget {
           MaterialPageRoute(
               builder: (BuildContext context) => HomePageCliente()));
     }
-    // redirectToNovoServico() {
-    //   Navigator.push(context,
-    //       MaterialPageRoute(builder: (BuildContext context) => NovoServico()));
-    // }
+
+    redirectToPerfilCliente() {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => PerfilCliente()));
+    }
 
     return Drawer(
       child: ListView(
@@ -82,7 +85,7 @@ class MyDrawerMenuCliente extends StatelessWidget {
           ListTile(
             title: Text('Meu perfil'),
             onTap: () {
-              print('ssds');
+              redirectToPerfilCliente();
             },
             leading: Icon(Icons.account_circle, size: 35, color: myBlue),
           ),

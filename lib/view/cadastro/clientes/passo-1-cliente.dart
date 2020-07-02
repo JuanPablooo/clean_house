@@ -16,12 +16,13 @@ class _Passo1Cliente extends State<Passo1Cliente> {
   @override
   Widget build(BuildContext context) {
     final passosController = Provider.of<PassosController>(context);
+    double altura = MediaQuery.of(context).size.height;
     return Scaffold(
         // resizeToAvoidBottomInset: false,
-        body: Observer(
+        body: SingleChildScrollView(child: Observer(
       builder: (_) {
-        return Container(child: passosController.passoAtual);
+        return Container(height: altura, child: passosController.passoAtual);
       },
-    ));
+    )));
   }
 }

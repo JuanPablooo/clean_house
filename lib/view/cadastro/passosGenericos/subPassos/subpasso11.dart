@@ -1,4 +1,3 @@
-
 import 'package:clean_house/constants/cores.dart';
 import 'package:clean_house/controller/passos-controller.dart';
 import 'package:clean_house/controller/usuario-controller.dart';
@@ -11,12 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
-class SubPasso1 extends StatelessWidget implements SubPassAbstract{
+class SubPasso1 extends StatelessWidget implements SubPassAbstract {
   @override
   Widget build(BuildContext context) {
-    final UsuarioController userController = Provider.of<UsuarioController>(context);
-    final PassosController passosController = Provider.of<PassosController>(context);
-    return  Column(
+    final UsuarioController userController =
+        Provider.of<UsuarioController>(context);
+    final PassosController passosController =
+        Provider.of<PassosController>(context);
+    return Column(
       children: <Widget>[
         SizedBox(
           height: 365,
@@ -25,30 +26,29 @@ class SubPasso1 extends StatelessWidget implements SubPassAbstract{
             padding: EdgeInsets.only(left: 25, right: 25),
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.all(
-                    Radius.circular(30)
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(30)),
                 boxShadow: [
                   BoxShadow(
-                      offset: Offset(5,5),
+                      offset: Offset(5, 5),
                       blurRadius: 10.0,
                       spreadRadius: .8,
-                      color: Colors.grey
-                  )
-                ]
-            ),
+                      color: Colors.grey)
+                ]),
             child: Stack(
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    InputGeneric(labelText: "Nome",
+                    InputGeneric(
+                      labelText: "Nome",
                       onChange: userController.usuario.changeNome,
                       errorText: userController.validaNome,
                     ),
-                    InputGeneric(labelText: "Data Nascimento",
-                      onChange: userController.usuario.changeDataNascimento),
-                    InputGeneric(labelText: "CPF",
-                    onChange: userController.usuario.changeCpf,
+                    InputGeneric(
+                        labelText: "Data Nascimento",
+                        onChange: userController.usuario.changeDataNascimento),
+                    InputGeneric(
+                      labelText: "CPF",
+                      onChange: userController.usuario.changeCpf,
                     ),
                   ],
                 ),
@@ -60,9 +60,15 @@ class SubPasso1 extends StatelessWidget implements SubPassAbstract{
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        CirculoSubPasso(corCirculo: myBlue,),
-                        CirculoSubPasso(corCirculo: myDarkBlue,),
-                        CirculoSubPasso(corCirculo: myDarkBlue,),
+                        CirculoSubPasso(
+                          corCirculo: myBlue,
+                        ),
+                        CirculoSubPasso(
+                          corCirculo: myDarkBlue,
+                        ),
+                        CirculoSubPasso(
+                          corCirculo: myDarkBlue,
+                        ),
                       ],
                     ),
                   ),
@@ -71,11 +77,14 @@ class SubPasso1 extends StatelessWidget implements SubPassAbstract{
             ),
           ),
         ),
-        SizedBox(height: 25,),
+        SizedBox(
+          height: 25,
+        ),
         SizedBox(
           height: 50,
           width: 300,
-          child: BtnContinuar(onPress: passosController.trocaSubPasso,
+          child: BtnContinuar(
+            onPress: passosController.trocaSubPasso,
             proximoPasso: SubPasso2(),
           ),
         )
@@ -83,5 +92,3 @@ class SubPasso1 extends StatelessWidget implements SubPassAbstract{
     );
   }
 }
-
-

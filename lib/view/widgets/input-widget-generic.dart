@@ -7,34 +7,41 @@ class InputGeneric extends StatefulWidget {
   @override
   _InputGenericState createState() => _InputGenericState();
 
-
   String labelText;
   Function onChange;
-  String generoInput ;
+  String generoInput;
   TextInputType tipoTeclado;
-  String Function()  errorText;
+  String Function() errorText;
   Icon icone;
   String hint;
+  bool senha;
 
-  InputGeneric({
-        @required this.labelText,
-        this.onChange ,this.tipoTeclado,
-        String Function() this.errorText,
-        String this.hint,
-        Icon this.icone
-      });
+  InputGeneric(
+      {@required this.labelText,
+      this.onChange,
+      this.tipoTeclado,
+      String Function() this.errorText,
+      String this.hint,
+      bool this.senha = false,
+      Icon this.icone});
 }
 
 class _InputGenericState extends State<InputGeneric> {
   @override
   Widget build(BuildContext context) {
+    // if (widget.senha == 'senha') {
+    //   print("senha");
+    // } else {
+    //   print('nao nulo');
+    // }
     return Container(
       child: Observer(
         builder: (_) {
           return TextField(
             onChanged: widget.onChange,
             onTap: () {},
-            keyboardType: widget.tipoTeclado ,
+            obscureText: widget.senha, //== null ? false : true,
+            keyboardType: widget.tipoTeclado,
             decoration: InputDecoration(
               labelStyle: TextStyle(
                 color: myDarkBlue,
