@@ -1,6 +1,8 @@
 import 'package:clean_house/constants/constantes-general.dart';
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/view/meu-servico/novo-servico-cliente.dart';
 import 'package:clean_house/view/widgets/app-bar/app-bares.dart';
+import 'package:clean_house/view/widgets/btn-generic.dart';
 import 'package:clean_house/view/widgets/drawer-menu-cliente.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +25,13 @@ class _HomePageClienteState extends State<HomePageCliente> {
         fontSize: alturaTela * .03,
         fontWeight: FontWeight.bold);
 
+    redirectToNovoServico() {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => NovoServicoCliente()));
+    }
+
     return Scaffold(
       appBar: appBar,
       drawer: MyDrawerMenuCliente(),
@@ -42,9 +51,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
           ),
           Column(
             children: <Widget>[
-              SizedBox(
-                height: alturaTela * .07,
-              ),
+              SizedBox(height: alturaTela * .03),
               Container(
                 width: larguraTela / 1,
                 height: alturaTela / 9,
@@ -130,6 +137,16 @@ class _HomePageClienteState extends State<HomePageCliente> {
                   ),
                 ],
               ),
+              SizedBox(height: alturaTela * .03),
+              Container(
+                width: larguraTela * .7,
+                height: alturaTela * .07,
+                child: BtnGenericoWidget(
+                  fontSize: alturaTela * .035,
+                  titulo: 'Novo serviço',
+                  onPress: () => {redirectToNovoServico()},
+                ),
+              )
             ],
           )
         ],

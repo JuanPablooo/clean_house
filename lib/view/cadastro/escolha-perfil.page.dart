@@ -10,71 +10,68 @@ import 'package:clean_house/view/cadastro/clientes/passo-1-cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-class EscolhaPerfil extends StatelessWidget{
+class EscolhaPerfil extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
-    final PassosController passosController = Provider.of<PassosController>(context);
-    var  entrarPage = () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-          builder: (BuildContext context)=> LoginPage()));
+  Widget build(BuildContext context) {
+    final PassosController passosController =
+        Provider.of<PassosController>(context);
+    var entrarPage = () {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) => LoginPage()));
     };
-    var  cadastroCliente = () {
+    var cadastroCliente = () {
       passosController.trocaPasso3(Passo3Cliente());
       Navigator.push(
           context,
           MaterialPageRoute(
-          builder: (BuildContext context)=> Passo1Cliente()));
+              builder: (BuildContext context) => Passo1Cliente()));
     };
-    var  cadastroProfissional = () {
+    var cadastroProfissional = () {
       passosController.trocaPasso3(Passo3Profissional());
       Navigator.push(
           context,
           MaterialPageRoute(
-          builder: (BuildContext context)=> PrimeirosPassosProfissional()));
+              builder: (BuildContext context) =>
+                  PrimeirosPassosProfissional()));
     };
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(25,184,212,1),
-        title: Text("Priorizando a sua experiência!",
-          style: TextStyle() ,
+        backgroundColor: Color.fromRGBO(25, 184, 212, 1),
+        title: Text(
+          "Priorizando a sua experiência!",
+          style: TextStyle(),
         ),
       ),
-      resizeToAvoidBottomInset : false,
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: Background.desenha("background.png"),
-        padding: EdgeInsets.only(top: 20, left: 25, right: 25 ),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              height: 85,
-            ),
-            Column(
-
-              children: <Widget>[
-                Text(
-                  "Cadastre-se como:",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 27,
-                    color: Colors.white,
-                  ),
+        padding: EdgeInsets.only(top: 20, left: 25, right: 25),
+        child: ListView(children: <Widget>[
+          SizedBox(
+            height: 85,
+          ),
+          Column(
+            children: <Widget>[
+              Text(
+                "Cadastre-se como:",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 27,
+                  color: Colors.white,
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Container(
-              child: SizedBox(
-                height: 250,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-
-                    SizedBox(
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Container(
+            child: SizedBox(
+              height: 250,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  SizedBox(
                       height: 110,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -84,51 +81,46 @@ class EscolhaPerfil extends StatelessWidget{
                             width: 100,
                             child: Image.asset("assets/funcionaria.png"),
                           ),
-                          btnGeneric("PROFISSIONAL", myDarkBlue, cadastroProfissional, null, 200.0)
+                          btnGeneric("PROFISSIONAL", myDarkBlue,
+                              cadastroProfissional, null, 200.0)
                         ],
-                      )
-                    ),
-                    SizedBox(
-                        height: 110,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Image.asset("assets/cliente.png"),
-                            ),
-                            btnGeneric("CLIENTE", myDarkBlue, cadastroCliente, null, 200.0)
-                          ],
-                        )
-                    ),
-                  ],
-                ),
+                      )),
+                  SizedBox(
+                      height: 110,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Image.asset("assets/cliente.png"),
+                          ),
+                          btnGeneric("CLIENTE", myDarkBlue, cadastroCliente,
+                              null, 200.0)
+                        ],
+                      )),
+                ],
               ),
             ),
-            SizedBox(
-              height: 23,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "já está cadastrado ?",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                btnGeneric("ENTRE", myDarkBlue, entrarPage, null, 330.0)
-              ],
-            )
-
-          ]
-        ),
-      ) ,
+          ),
+          SizedBox(
+            height: 23,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Já está cadastrado ?",
+                style: TextStyle(color: Colors.black87, fontSize: 30),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              btnGeneric("ENTRE", myDarkBlue, entrarPage, null, 330.0)
+            ],
+          )
+        ]),
+      ),
     );
   }
 }

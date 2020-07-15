@@ -31,6 +31,7 @@ dependencies:
   # masked_text: ^0.0.6
   flutter_masked_text: ^0.8.0
   flutter_validate: ^1.0.0
+  bottom_navy_bar: ^5.4.0
 
 
 

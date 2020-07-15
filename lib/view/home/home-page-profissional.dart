@@ -1,5 +1,7 @@
 import 'package:clean_house/constants/constantes-general.dart';
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/controller/home-profissional-controller.dart';
+import 'package:clean_house/models/servico-model.dart';
 import 'package:clean_house/view/widgets/app-bar/app-bares.dart';
 import 'package:clean_house/view/widgets/drawer-meu-profissional.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,11 @@ class _HomePageProfissionalState extends State<HomePageProfissional> {
         fontWeight: FontWeight.bold);
 
     var listServices = ['primeiro', 'segundo'];
-
+    var homeController = HomeProfissionalController();
+    homeController.findServicos();
+    print("=-=-=--=");
+    print(homeController.servicos.length);
+    print("=-=-=--=");
     return Scaffold(
       appBar: appBar,
       drawer: MyDrawerMenuProfissional(),
@@ -65,15 +71,37 @@ class _HomePageProfissionalState extends State<HomePageProfissional> {
                   height: 10,
                   width: larguraTela * .8,
                   child: ListView.builder(
-                    itemCount: 2,
+                    itemCount: homeController.servicos.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
+                      Servico servico = homeController.servicos[index];
                       return Card(
                         elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(alturaTela * .05),
+                        ),
                         child: Container(
                           height: alturaTela * .6,
                           width: larguraTela * .5,
-                          // child: ,
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(height: alturaTela * .05),
+                              Text(
+                                'você tem uma solicitação de ' +
+                                    servico.cliente.nome,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: alturaTela * .03),
+                              ),
+                              SizedBox(height: alturaTela * .05),
+                              SizedBox(
+                                height: alturaTela * .167,
+                                child: Image.asset('assets/cliente.png'),
+                              ),
+                              SizedBox(height: alturaTela * .05),
+                              Text(servico.endereco)
+                            ],
+                          ),
                         ),
                       );
                     },

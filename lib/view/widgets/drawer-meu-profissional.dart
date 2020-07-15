@@ -3,6 +3,7 @@ import 'package:clean_house/view/endereco/endereco-cliente.dart';
 import 'package:clean_house/view/endereco/endereco-profissional.dart';
 import 'package:clean_house/view/home/home-page-cliente.dart';
 import 'package:clean_house/view/home/home-page-profissional.dart';
+import 'package:clean_house/view/meu-servico/meu-servico.dart';
 import 'package:clean_house/view/perfil/perfil-cliente.dart';
 import 'package:clean_house/view/perfil/perfil-profissional.dart';
 import 'package:clean_house/view/widgets/btn-generic.dart';
@@ -38,6 +39,11 @@ class MyDrawerMenuProfissional extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => PerfilProfissional()));
+    }
+
+    redirectToMeuServico() {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) => MeuServico()));
     }
 
     return Drawer(
@@ -97,7 +103,7 @@ class MyDrawerMenuProfissional extends StatelessWidget {
           ListTile(
             title: Text('Meu serviço'),
             onTap: () {
-              // redirectToEndereco();
+              redirectToMeuServico();
             },
             leading: Icon(Icons.work, size: 35, color: myBlue),
           ),
