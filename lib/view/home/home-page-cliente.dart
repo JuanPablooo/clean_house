@@ -42,10 +42,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(
-                    'assets/fundo.png',
-                  ),
-                  fit: BoxFit.cover),
+                  image: AssetImage('assets/fundo.png'), fit: BoxFit.cover),
               color: Color(0xFF4BB7CF),
             ),
           ),

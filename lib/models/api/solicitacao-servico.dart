@@ -25,7 +25,7 @@ class SolicitacaoDeServico {
         ? new Residencia.fromJson(json['residencia'])
         : null;
     data = json['data'];
-    servicos = json['servicos'] == null
+    servicos = json['servicos'] != null
         ? new ServicosApi.fromJson(json['servicos'])
         : null;
     preco = json['preco'];

@@ -14,6 +14,7 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
   bool passar = false;
   bool comida = false;
   bool limpar = false;
+  String dropdownValue = 'casa 1';
   void desabilitaTodos() {
     setState(() {
       passar = false;
@@ -120,8 +121,35 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                   ),
                   SizedBox(height: alturaTela * .06),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('Endereço'),
+                      DropdownButton<String>(
+                        value: dropdownValue,
+                        icon: Icon(
+                          Icons.arrow_downward,
+                          color: myBlue,
+                        ),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(color: myBlue),
+                        underline: Container(
+                          height: 2,
+                          color: myBlue,
+                        ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            dropdownValue = newValue;
+                          });
+                        },
+                        items: <String>['casa 1', 'casa 2', 'caso 3']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text('kkkkk'),
+                          );
+                        }).toList(),
+                      )
                     ],
                   )
                 ],

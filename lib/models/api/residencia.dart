@@ -3,7 +3,7 @@ import 'package:clean_house/models/api/endereco.dart';
 class Residencia {
   int id;
   int quantidadeQuartos;
-  Null quantidadeBanheiros;
+  int quantidadeBanheiros;
   Endereco endereco;
 
   Residencia(
