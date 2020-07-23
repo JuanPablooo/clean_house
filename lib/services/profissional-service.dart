@@ -1,4 +1,5 @@
 import 'package:clean_house/services/api-config.dart';
+import 'package:http/http.dart';
 
 class ProfissionalService {
   var resource = 'profissionais';
@@ -16,9 +17,6 @@ class ProfissionalService {
   buscaProfissionalById(id) async {
     print("buscou");
     var responseApi = await MyApi.busca(resource + '/' + id);
-    print("resposta");
-    print(responseApi.body);
-    print("resposta");
     return responseApi;
   }
 }

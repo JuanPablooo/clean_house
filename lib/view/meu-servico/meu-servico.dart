@@ -40,7 +40,8 @@ class _MeuServicoState extends State<MeuServico> {
 
   void getDependencias() async {
     Response response = await profissionalService.buscaProfissionalById('1');
-    if (response.statusCode == 200) {
+
+    if (response != null && response.statusCode == 200) {
       profissional = Profissional.fromJson(jsonDecode(response.body));
       setProfissional(profissional);
     }

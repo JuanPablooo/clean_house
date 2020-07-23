@@ -9,7 +9,11 @@ class MyApi {
   }
 
   static busca(resource) async {
-    var response = await http.get(BASE_URL + resource);
-    return response;
+    try {
+      var response = await http.get(BASE_URL + resource);
+      return response;
+    } catch (e) {
+      return null;
+    }
   }
 }
