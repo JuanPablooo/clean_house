@@ -10,5 +10,15 @@ class ProfissionalService {
 
   buscaProfissional() async {
     var responseApi = await MyApi.busca(resource);
+    return responseApi;
+  }
+
+  buscaProfissionalById(id) async {
+    print("buscou");
+    var responseApi = await MyApi.busca(resource + '/' + id);
+    print("resposta");
+    print(responseApi.body);
+    print("resposta");
+    return responseApi;
   }
 }
