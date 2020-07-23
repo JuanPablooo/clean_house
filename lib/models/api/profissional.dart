@@ -10,8 +10,8 @@ class Profissional {
   String nomeCompleto;
   String cpf;
   String dataNascimento;
-  Null fotoPerfil;
-  Null videoPerfil;
+  String fotoPerfil;
+  String videoPerfil;
   String telefoneFixo;
   String celular;
   ServicosApi servicos;
@@ -97,4 +97,14 @@ class Profissional {
     }
     return data;
   }
+
+  List<SolicitacaoDeServico> getRecusados() =>
+      solicitacaoDeServicos.where((servico) => !servico.aprovado).toList();
+
+  List<SolicitacaoDeServico> getPendentes() => solicitacaoDeServicos
+      .where((servico) => servico.aprovado == null)
+      .toList();
+
+  List<SolicitacaoDeServico> getFinalizados() =>
+      solicitacaoDeServicos.where((servico) => servico.aprovado).toList();
 }

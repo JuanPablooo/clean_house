@@ -1,5 +1,6 @@
 import 'package:clean_house/constants/constantes-general.dart';
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/view/meu-servico/novo-servico/esolha-profissional.dart';
 import 'package:clean_house/view/widgets/app-bar/app-bares.dart';
 import 'package:clean_house/view/widgets/btn-generic.dart';
 import 'package:clean_house/view/widgets/drawer-menu-cliente.dart';
@@ -40,6 +41,13 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
         color: Colors.white,
         fontSize: alturaTela * .045,
         fontWeight: FontWeight.bold);
+
+    redirectEscolhaProfissional() {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => EscolhaProfissional()));
+    }
 
     return Scaffold(
       appBar: appBar,
@@ -153,6 +161,17 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                     ],
                   )
                 ],
+              ),
+            ),
+            //TODO enviar a solicitacao de servico para a esolha do profissional
+            SizedBox(height: alturaTela * .03),
+            Container(
+              width: larguraTela * .75,
+              height: alturaTela * .08,
+              child: BtnGenericoWidget(
+                fontSize: alturaTela * .03,
+                color: myGreen,
+                onPress: redirectEscolhaProfissional,
               ),
             )
           ],
