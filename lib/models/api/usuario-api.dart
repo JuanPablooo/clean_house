@@ -21,4 +21,7 @@ class UsuarioApi {
     data['tipo'] = this.tipo;
     return data;
   }
+
+  setEmail(value) => this.email = value;
+  setSenha(value) => this.senha = value;
 }
