@@ -27,15 +27,16 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-          title: 'Clean House',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          // home: LoginPage(),
-          // home: HomePageCliente(),
-          // home: HomePageProfissional(),
-          home: MeuServico()),
+        title: 'Clean House',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        // home: LoginPage(),
+        home: HomePageCliente(),
+        // home: MeuServico()
+      ),
     );
   }
 }
+// home: HomePageProfissional(),
