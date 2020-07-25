@@ -28,6 +28,9 @@ dependencies:
   image_picker:
   cached_network_image: any
   http: 0.12.1
+  # fluttie: ^0.2.4
+  # fluttie: ^0.3.0
+  flutter_lottie: ^0.2.0
   # masked_text: ^0.0.6
   flutter_masked_text: ^0.8.0
   flutter_validate: ^1.0.0
@@ -68,6 +71,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/animacoes/aprovou.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

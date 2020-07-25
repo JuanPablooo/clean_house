@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:clean_house/models/api/cidade.dart';
 import 'package:clean_house/models/api/endereco.dart';
 import 'package:clean_house/models/api/servicos-api.dart';
@@ -98,13 +100,20 @@ class Profissional {
     return data;
   }
 
-  List<SolicitacaoDeServico> getRecusados() =>
-      solicitacaoDeServicos.where((servico) => !servico.aprovado).toList();
-
-  List<SolicitacaoDeServico> getPendentes() => solicitacaoDeServicos
-      .where((servico) => servico.aprovado == null)
+  List<SolicitacaoDeServico> getRecusados() => solicitacaoDeServicos
+      .where((servico) => servico.status == "cancelado")
       .toList();
 
-  List<SolicitacaoDeServico> getFinalizados() =>
-      solicitacaoDeServicos.where((servico) => servico.aprovado).toList();
+  List<SolicitacaoDeServico> getPendentes() => solicitacaoDeServicos
+      .where((servico) => servico.status == "aguardando")
+      .toList();
+  List<SolicitacaoDeServico> getConfimados() => solicitacaoDeServicos
+      .where((servico) => servico.status == "confirmado")
+      .toList();
+
+  List<SolicitacaoDeServico> getFinalizados() {
+    return solicitacaoDeServicos
+        .where((ser) => ser.status == "finalizado")
+        .toList();
+  }
 }

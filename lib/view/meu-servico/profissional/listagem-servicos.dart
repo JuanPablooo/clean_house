@@ -6,12 +6,14 @@ class ListagemServicos extends StatelessWidget {
   final double larguraTela;
   final double alturaTela;
   final String titulo;
+  bool avaliar;
   final List<SolicitacaoDeServico> servicos;
-  const ListagemServicos(
+  ListagemServicos(
       {Key key,
       @required this.alturaTela,
       @required this.larguraTela,
       @required this.titulo,
+      this.avaliar = false,
       @required this.servicos})
       : super(key: key);
 
@@ -52,6 +54,7 @@ class ListagemServicos extends StatelessWidget {
                         ),
                       ),
                       CardServicoSolicitado(
+                        avaliar: avaliar,
                         widthCard: larguraTela,
                         heightCard: alturaTela,
                         solicitacaoDeServico: servicos[index],
@@ -60,6 +63,7 @@ class ListagemServicos extends StatelessWidget {
                   );
                 }
                 return CardServicoSolicitado(
+                  avaliar: avaliar,
                   widthCard: larguraTela,
                   heightCard: alturaTela,
                   solicitacaoDeServico: servicos[index],

@@ -42,7 +42,8 @@ class _MeuServicoState extends State<MeuServico> {
     Response response = await profissionalService.buscaProfissionalById('1');
 
     if (response != null && response.statusCode == 200) {
-      profissional = Profissional.fromJson(jsonDecode(response.body));
+      profissional = Profissional.fromJson(
+          jsonDecode(utf8.decode(response.body.runes.toList())));
       setProfissional(profissional);
     }
   }
@@ -53,31 +54,12 @@ class _MeuServicoState extends State<MeuServico> {
     super.dispose();
   }
 
-  SolicitacaoDeServico servico = SolicitacaoDeServico.fromJson({
-    "id": 1,
-    "residencia": {
-      "id": 1,
-      "quantidadeQuartos": 4,
-      "quantidadeBanheiros": 0,
-      "endereco": {
-        "id": 2,
-        "numero": "15",
-        "cep": "03330-330",
-        "cidade": "Osasco",
-        "rua": "Rua dos 2",
-        "bairro": "Jd. Marina",
-        "estado": "São Paulo",
-        "pais": "Brasil",
-        "complemento": "casa 4",
-        "pontoReferencia": "Em frente ao bar."
-      }
-    },
-    "data": 1596844800000,
-    "servicos": null,
-    "preco": 100.0,
-    "observacao": "seria possivél chegar as 8 ?",
-    "status": "Aguardando confirmação"
-  });
+  List<SolicitacaoDeServico> getSevicos(servicos) {
+    if (profissional.solicitacaoDeServicos != null) {
+      return servicos();
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,19 +97,20 @@ class _MeuServicoState extends State<MeuServico> {
                       alturaTela: alturaTela,
                       larguraTela: larguraTela,
                       titulo: "Meus Serviços",
-                      servicos: profissional.getPendentes(),
+                      avaliar: true,
+                      servicos: getSevicos(profissional.getPendentes),
                     ),
                     ListagemServicos(
                       alturaTela: alturaTela,
                       larguraTela: larguraTela,
                       titulo: "Finalizados",
-                      servicos: profissional.getFinalizados(),
+                      servicos: getSevicos(profissional.getFinalizados),
                     ),
                     ListagemServicos(
                       alturaTela: alturaTela,
                       larguraTela: larguraTela,
                       titulo: "Recusados",
-                      servicos: profissional.getRecusados(),
+                      servicos: getSevicos(profissional.getRecusados),
                     ),
                   ],
                 ))
@@ -153,13 +136,20 @@ class _MeuServicoState extends State<MeuServico> {
               inactiveColor: Colors.white,
             ),
             BottomNavyBarItem(
+              // icon: Icon(Icons.av_timer),
+              icon: Icon(Icons.data_usage),
+              title: Text('A fazer'),
+              activeColor: Colors.amber,
+              inactiveColor: Colors.white,
+            ),
+            BottomNavyBarItem(
                 icon: Icon(Icons.check_circle),
                 title: Text('Finalizados'),
                 inactiveColor: Colors.white,
                 activeColor: myGreen),
             BottomNavyBarItem(
               icon: Icon(Icons.close),
-              title: Text('Cancelados'),
+              title: Text('Recusados'),
               inactiveColor: Colors.white,
               activeColor: Colors.red,
             ),

@@ -1,5 +1,4 @@
 import 'package:clean_house/services/api-config.dart';
-import 'package:http/http.dart';
 
 class ProfissionalService {
   var resource = 'profissionais';
