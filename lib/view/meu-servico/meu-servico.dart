@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/models/api/cliente.dart';
 import 'package:clean_house/models/api/profissional.dart';
 import 'package:clean_house/models/api/solicitacao-servico.dart';
+import 'package:clean_house/services/cliente-service.dart';
 import 'package:clean_house/services/profissional-service.dart';
 import 'package:clean_house/view/meu-servico/profissional/listagem-servicos.dart';
 import 'package:clean_house/view/widgets/app-bar/app-bares.dart';
@@ -25,6 +27,8 @@ class _MeuServicoState extends State<MeuServico> {
   ProfissionalService profissionalService = ProfissionalService();
 
   Profissional profissional = new Profissional();
+  ClienteService clienteService = new ClienteService();
+  List<Cliente> clientes = List<Cliente>();
 
   void initState() {
     super.initState();
@@ -38,6 +42,12 @@ class _MeuServicoState extends State<MeuServico> {
     });
   }
 
+  setClientes(List<Cliente> newClientes) {
+    setState(() {
+      clientes = newClientes;
+    });
+  }
+
   void getDependencias() async {
     Response response = await profissionalService.buscaProfissionalById('1');
 
@@ -45,6 +55,18 @@ class _MeuServicoState extends State<MeuServico> {
       profissional = Profissional.fromJson(
           jsonDecode(utf8.decode(response.body.runes.toList())));
       setProfissional(profissional);
+    }
+
+    Response res = await clienteService.buscaClientes();
+    if (res != null && res.statusCode == 200) {
+      var array = jsonDecode(utf8.decode(res.body.runes.toList()));
+      List<Cliente> listaClientes = List<Cliente>();
+      if (array != null) {
+        array.forEach((cliente) {
+          listaClientes.add(new Cliente.fromJson(cliente));
+        });
+        setClientes(listaClientes);
+      }
     }
   }
 
@@ -68,7 +90,7 @@ class _MeuServicoState extends State<MeuServico> {
     double larguraTela = size.width;
     double alturaTela = (size.height - appBar.preferredSize.height) -
         MediaQuery.of(context).padding.top;
-    print(profissional.solicitacaoDeServicos);
+
     return Container(
       child: Scaffold(
         appBar: appBar,
@@ -97,18 +119,30 @@ class _MeuServicoState extends State<MeuServico> {
                       alturaTela: alturaTela,
                       larguraTela: larguraTela,
                       titulo: "Meus Serviços",
+                      clientes: clientes,
                       avaliar: true,
+                      atualizaState: setProfissional,
+                      profissional: profissional,
                       servicos: getSevicos(profissional.getPendentes),
                     ),
                     ListagemServicos(
                       alturaTela: alturaTela,
                       larguraTela: larguraTela,
+                      clientes: clientes,
+                      titulo: "Confirmados",
+                      servicos: getSevicos(profissional.getConfimados),
+                    ),
+                    ListagemServicos(
+                      alturaTela: alturaTela,
+                      larguraTela: larguraTela,
+                      clientes: clientes,
                       titulo: "Finalizados",
                       servicos: getSevicos(profissional.getFinalizados),
                     ),
                     ListagemServicos(
                       alturaTela: alturaTela,
                       larguraTela: larguraTela,
+                      clientes: clientes,
                       titulo: "Recusados",
                       servicos: getSevicos(profissional.getRecusados),
                     ),
