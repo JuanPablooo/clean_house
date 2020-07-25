@@ -1,16 +1,22 @@
+import 'dart:convert';
+
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/models/api/cliente.dart';
 import 'package:clean_house/models/api/endereco.dart';
+import 'package:clean_house/models/api/profissional.dart';
 import 'package:clean_house/models/api/residencia.dart';
 import 'package:clean_house/models/api/solicitacao-servico.dart';
 import 'package:clean_house/services/servico-service.dart';
 import 'package:clean_house/view/widgets/btn-generic.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttie/fluttie.dart';
 import 'package:http/http.dart';
 
 class CardServicoSolicitado extends StatefulWidget {
   final double widthCard;
   final double heightCard;
+  final atualiza;
+  final Profissional profissional;
+  final Cliente cliente;
   bool avaliar;
   final SolicitacaoDeServico solicitacaoDeServico;
 
@@ -19,6 +25,9 @@ class CardServicoSolicitado extends StatefulWidget {
       @required this.widthCard,
       @required this.solicitacaoDeServico,
       this.avaliar = false,
+      this.atualiza,
+      this.profissional,
+      this.cliente,
       @required this.heightCard})
       : super(key: key);
 
@@ -33,37 +42,55 @@ class _CardServicoSolicitadoState extends State<CardServicoSolicitado> {
 
   Endereco endereco;
 
-  FluttieAnimationController animatioCtrl;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    prepareAnimation();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    animatioCtrl?.dispose();
   }
 
-  prepareAnimation() async {
-    var instance = Fluttie();
-    var checkAnimation =
-        await instance.loadAnimationFromAsset("assets/animacoes/aprovou.json");
-
-    animatioCtrl = await instance.prepareAnimation(checkAnimation,
-        duration: const Duration(seconds: 2),
-        repeatCount: const RepeatCount.dontRepeat(),
-        repeatMode: RepeatMode.START_OVER);
+  void aprove() async {
+    var status = json.encode({'status': 'confirmado'});
+    int id = widget.solicitacaoDeServico.id;
+    Response respo = await servicoService.atualizaStatus(id, status);
+    if (respo.statusCode == 200) {
+      widget.solicitacaoDeServico.status = "confirmado";
+      widget.atualiza(widget.profissional);
+      // widget.solicitacaoDeServico
+      print("deu");
+    } else {
+      print("nao deu ");
+    }
   }
 
-  void reprove() async {}
+  void reprove() async {
+    var status = json.encode({'status': 'cancelado'});
+    int id = widget.solicitacaoDeServico.id;
+    Response respo = await servicoService.atualizaStatus(id, status);
+    if (respo.statusCode == 200) {
+      widget.solicitacaoDeServico.status = "cancelado";
+      widget.atualiza(widget.profissional);
+      // widget.solicitacaoDeServico
+      print("deu");
+    } else {
+      print("nao deu ");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    var url;
+    var imagen = Image.asset('assets/cliente.png');
+    url = widget.cliente.usuario.urlPerfil;
+    if (url != null) {
+      imagen = Image.network(url);
+    }
+    // var url = widget.profissional.usuario.
     var btndetalhes = BtnGenericoWidget(
       fontSize: widget.heightCard * .03,
       titulo: "Detalhes",
@@ -78,7 +105,8 @@ class _CardServicoSolicitadoState extends State<CardServicoSolicitado> {
     var rejeitar = BtnGenericoWidget(
       fontSize: widget.heightCard * .03,
       titulo: "Rejeitar",
-      color: Colors.redAccent, //Colors.green,
+      color: Colors.redAccent, //
+      onPress: reprove,
     );
     var btnspendente = Row(
       mainAxisSize: MainAxisSize.max,
@@ -110,15 +138,14 @@ class _CardServicoSolicitadoState extends State<CardServicoSolicitado> {
                   style: styleText,
                 ),
                 Text(
-                  'de ' + 'nome',
+                  widget.cliente.nomeCompleto,
                   style: styleText,
                 ),
                 SizedBox(height: widget.heightCard * .05),
                 SizedBox(
                   height: widget.heightCard * .167,
-                  child: Image.asset('assets/cliente.png'),
+                  child: imagen,
                 ),
-                FluttieAnimation(animatioCtrl),
                 SizedBox(height: widget.heightCard * .05),
                 Text(
                     endereco.rua +
@@ -141,22 +168,5 @@ class _CardServicoSolicitadoState extends State<CardServicoSolicitado> {
         ),
       ),
     );
-  }
-
-  Future<Function> aprove() async {
-    setState(() {
-      enviando = true;
-    });
-    Future.delayed(
-        const Duration(seconds: 4),
-        () => setState(() {
-              carregado = true;
-              animatioCtrl.start();
-            }));
-    // var status = "{'status':'confirmado'}";
-    // int id = solicitacaoDeServico.id;
-    // Response respo = await servicoService.atualizaStatus(id, status);
-    // if (respo.statusCode == 200) {
-    // }
   }
 }

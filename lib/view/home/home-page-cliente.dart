@@ -137,7 +137,7 @@ class _HomePageClienteState extends State<HomePageCliente> {
               SizedBox(height: alturaTela * .03),
               Container(
                 width: larguraTela * .7,
-                height: alturaTela * .07,
+                height: alturaTela * .08,
                 child: BtnGenericoWidget(
                   fontSize: alturaTela * .035,
                   titulo: 'Novo serviço',

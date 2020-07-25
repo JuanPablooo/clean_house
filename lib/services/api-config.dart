@@ -13,7 +13,7 @@ class MyApi {
 
   static atualiza(resource, body) async {
     var response = await http.put(BASE_URL + resource, body: body, headers: {
-      "Content-type": "application/json, charset=utf-8'",
+      "Content-type": "application/json",
     });
     return response;
   }

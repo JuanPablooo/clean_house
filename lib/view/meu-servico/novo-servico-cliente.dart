@@ -24,6 +24,8 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
     });
   }
 
+  //TODO pegar cliente cadastrado
+
   @override
   Widget build(BuildContext context) {
     var appBar = MyAppBar.appBarCliente;
@@ -154,11 +156,22 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text('kkkkk'),
+                            child: Text('minha casa Osasco'),
                           );
                         }).toList(),
                       )
                     ],
+                  ),
+                  SizedBox(height: alturaTela * .03),
+                  Container(
+                    width: larguraTela * .4,
+                    height: alturaTela * .06,
+                    child: BtnGenericoWidget(
+                      fontSize: alturaTela * .03,
+                      titulo: "outra residência",
+                      color: myGreen,
+                      onPress: redirectEscolhaProfissional,
+                    ),
                   )
                 ],
               ),
