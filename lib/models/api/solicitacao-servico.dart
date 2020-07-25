@@ -8,7 +8,7 @@ class SolicitacaoDeServico {
   int idProfissional;
   int idCliente;
   Residencia residencia;
-  int data;
+  String data;
   ServicosApi servicos;
   double preco;
   bool aprovado;

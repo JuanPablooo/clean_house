@@ -3,6 +3,8 @@ class UsuarioApi {
   String email;
   String senha;
   String tipo;
+  String urlVideo;
+  String urlPerfil;
 
   UsuarioApi({this.id, this.email, this.senha, this.tipo});
 
@@ -11,6 +13,8 @@ class UsuarioApi {
     email = json['email'];
     senha = json['senha'];
     tipo = json['tipo'];
+    urlVideo = json['urlVideo'];
+    urlPerfil = json['urlPerfil'];
   }
 
   Map<String, dynamic> toJson() {
@@ -19,6 +23,8 @@ class UsuarioApi {
     data['email'] = this.email;
     data['senha'] = this.senha;
     data['tipo'] = this.tipo;
+    data['urlVideo'] = this.urlVideo;
+    data['urlPerfil'] = this.urlPerfil;
     return data;
   }
 
