@@ -16,6 +16,7 @@ class Profissional {
   String videoPerfil;
   String telefoneFixo;
   String celular;
+  int avaliacao;
   ServicosApi servicos;
   List<Endereco> enderecos;
   List<Cidade> cidades;
@@ -48,6 +49,7 @@ class Profissional {
     videoPerfil = json['videoPerfil'];
     telefoneFixo = json['telefoneFixo'];
     celular = json['celular'];
+    avaliacao = json['avaliacao'];
     servicos = json['servicos'] != null
         ? new ServicosApi.fromJson(json['servicos'])
         : null;
@@ -84,6 +86,7 @@ class Profissional {
     data['videoPerfil'] = this.videoPerfil;
     data['telefoneFixo'] = this.telefoneFixo;
     data['celular'] = this.celular;
+    data['avaliacao'] = this.avaliacao;
     if (this.servicos != null) {
       data['servicos'] = this.servicos.toJson();
     }

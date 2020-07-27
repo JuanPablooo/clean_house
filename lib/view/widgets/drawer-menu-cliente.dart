@@ -124,13 +124,6 @@ class MyDrawerMenuCliente extends StatelessWidget {
           SizedBox(
             height: altura * .02,
           ),
-          Container(
-            height: altura * .06, width: largura * .1,
-            color: Colors.red,
-            // child: BtnGenericoWidget(titulo: 'Sair', fontSize: altura * .03,
-            //   color: Color(0xFF1B9C94),
-            //   ) ,
-          ),
           // Drawer
           SizedBox(height: altura * .02)
         ],

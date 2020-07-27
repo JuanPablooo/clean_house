@@ -12,4 +12,9 @@ class ClienteService {
     var responseApi = await MyApi.busca(resource);
     return responseApi;
   }
+
+  buscaById(id) async {
+    var responseApi = await MyApi.busca(resource + '/' + id);
+    return responseApi;
+  }
 }
