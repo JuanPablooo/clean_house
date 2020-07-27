@@ -4,7 +4,7 @@ import 'package:clean_house/models/api/servicos-api.dart';
 class SolicitacaoDeServicoDTO {
   int id;
   Residencia residencia;
-  int data;
+  String data;
   int idCliente;
   int idProfissional;
   ServicosApi servicos;

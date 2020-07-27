@@ -16,6 +16,15 @@ class CardEscolhaProfissional extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var estrelaCheia = Icon(
+      Icons.star,
+      color: Colors.amber,
+      size: alturaTela * .05,
+    );
+    var estrelaVazia = Icon(
+      Icons.star_border,
+      size: alturaTela * .05,
+    );
     return Container(
       width: larguraTela * .8,
       child: Card(
@@ -28,29 +37,31 @@ class CardEscolhaProfissional extends StatelessWidget {
             width: larguraTela * .5,
             child: Column(
               children: <Widget>[
-                SizedBox(height: alturaTela * .035),
+                SizedBox(height: alturaTela * .023),
                 SizedBox(
-                  height: alturaTela * .167,
-                  child: Image.asset('assets/cliente.png'),
+                  height: alturaTela * .190,
+                  child: CircleAvatar(
+                    radius: alturaTela * .099,
+                    backgroundImage: profissional.usuario.urlPerfil != null
+                        ? NetworkImage(profissional.usuario.urlPerfil)
+                        : AssetImage('assets/cliente.png'),
+                  ),
                 ),
-                Text(profissional.nomeCompleto),
-                Text('Rua Santa Secilia'),
-                Text(profissional.celular),
-                Text('R\$ 100,00'),
-                SizedBox(height: alturaTela * .029),
+                SizedBox(height: alturaTela * .02),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    Icon(Icons.star_border),
-                    Icon(Icons.star_border),
-                    Icon(Icons.star_border),
-                    Icon(Icons.star_border),
+                    estrelaCheia,
+                    profissional.avaliacao > 1 ? estrelaCheia : estrelaVazia,
+                    profissional.avaliacao > 2 ? estrelaCheia : estrelaVazia,
+                    profissional.avaliacao > 3 ? estrelaCheia : estrelaVazia,
+                    profissional.avaliacao > 4 ? estrelaCheia : estrelaVazia,
                   ],
                 ),
+                SizedBox(height: alturaTela * .02),
+                Text(profissional.nomeCompleto),
+                SizedBox(height: alturaTela * .02),
+                Text('R\$ 100,00'),
                 SizedBox(height: alturaTela * .03),
                 Container(
                   height: alturaTela * .068,

@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:clean_house/constants/constantes-general.dart';
 import 'package:clean_house/constants/cores.dart';
 import 'package:clean_house/controller/home-profissional-controller.dart';
+import 'package:clean_house/models/api/cliente.dart';
 import 'package:clean_house/models/api/profissional.dart';
+import 'package:clean_house/models/api/solicitacao-servico-send.dart';
 import 'package:clean_house/models/api/solicitacao-servico.dart';
+import 'package:clean_house/services/profissional-service.dart';
 import 'package:clean_house/view/meu-servico/novo-servico/card-escolha.dart';
 import 'package:clean_house/view/widgets/app-bar/app-bares.dart';
 import 'package:clean_house/view/widgets/btn-generic.dart';
@@ -10,15 +15,55 @@ import 'package:clean_house/view/widgets/card-servico-solicitado.dart';
 import 'package:clean_house/view/widgets/drawer-menu-cliente.dart';
 import 'package:clean_house/view/widgets/drawer-meu-profissional.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class EscolhaProfissional extends StatefulWidget {
+  SolicitacaoDeServicoDTO servicoDTO;
+  EscolhaProfissional(@required this.servicoDTO);
   @override
   _EscolhaProfissionalState createState() => _EscolhaProfissionalState();
 }
 
 class _EscolhaProfissionalState extends State<EscolhaProfissional> {
+  ProfissionalService proService = new ProfissionalService();
+  List<Profissional> profissionais;
+
+  setProfissionais(List<Profissional> value) {
+    setState(() {
+      print('buscou');
+      print(value[0].cpf);
+      profissionais = value;
+    });
+  }
+
+  void initState() {
+    super.initState();
+    getDependencias();
+  }
+
+  void getDependencias() async {
+    Response response = await proService.buscaProfissional();
+
+    if (response != null && response.statusCode == 200) {
+      var newProfissional = Profissional();
+      var array = jsonDecode(utf8.decode(response.body.runes.toList()));
+      List<Profissional> newProfissionais = List<Profissional>();
+      if (array != null) {
+        array.forEach((profissional) {
+          newProfissionais.add(new Profissional.fromJson(profissional));
+        });
+        setProfissionais(newProfissionais);
+      }
+      // Cliente.fromJson(
+      //     jsonDecode(utf8.decode(response.body.runes.toList())));
+      // setClienteLogado(newCliente);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(profissionais);
+    print(widget.servicoDTO.data);
     var appBar = MyAppBar.appBarCliente;
     double larguraTela = MediaQuery.of(context).size.width;
     var size = MediaQuery.of(context).size;
@@ -56,11 +101,11 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
                   height: 10,
                   width: larguraTela * .8,
                   child: ListView.builder(
-                    itemCount: 3,
+                    itemCount: profissionais != null ? profissionais.length : 0,
                     // physics: AlwaysScrollableScrollPhysics(parent: ),
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
-                      // Servico servico = homeController.servicos[index];
+                      Profissional profAtual = profissionais[index];
                       if (index == 0) {
                         // return the header
                         return new Column(
@@ -83,7 +128,7 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
                             CardEscolhaProfissional(
                               larguraTela: larguraTela,
                               alturaTela: alturaTela,
-                              profissional: profissional,
+                              profissional: profAtual,
                             ),
                             Container(
                               height: 10,
@@ -131,7 +176,7 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
                           child: CardEscolhaProfissional(
                         larguraTela: larguraTela,
                         alturaTela: alturaTela,
-                        profissional: profissional,
+                        profissional: profAtual,
                       ));
                     },
                   ),

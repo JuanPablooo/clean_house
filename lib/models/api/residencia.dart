@@ -4,18 +4,21 @@ class Residencia {
   int id;
   int quantidadeQuartos;
   int quantidadeBanheiros;
+  String nome;
   Endereco endereco;
 
   Residencia(
       {this.id,
       this.quantidadeQuartos,
       this.quantidadeBanheiros,
+      this.nome,
       this.endereco});
 
   Residencia.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     quantidadeQuartos = json['quantidadeQuartos'];
     quantidadeBanheiros = json['quantidadeBanheiros'];
+    nome = json['nome'];
     endereco = json['endereco'] != null
         ? new Endereco.fromJson(json['endereco'])
         : null;
@@ -26,6 +29,7 @@ class Residencia {
     data['id'] = this.id;
     data['quantidadeQuartos'] = this.quantidadeQuartos;
     data['quantidadeBanheiros'] = this.quantidadeBanheiros;
+    data['nome'] = this.nome;
     if (this.endereco != null) {
       data['endereco'] = this.endereco.toJson();
     }

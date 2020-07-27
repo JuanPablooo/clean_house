@@ -1,10 +1,21 @@
+import 'dart:convert';
+
 import 'package:clean_house/constants/constantes-general.dart';
 import 'package:clean_house/constants/cores.dart';
+import 'package:clean_house/models/api/cliente.dart';
+import 'package:clean_house/models/api/residencia.dart';
+import 'package:clean_house/models/api/servicos-api.dart';
+import 'package:clean_house/models/api/solicitacao-servico-send.dart';
+import 'package:clean_house/models/api/solicitacao-servico.dart';
+import 'package:clean_house/services/cliente-service.dart';
 import 'package:clean_house/view/meu-servico/novo-servico/esolha-profissional.dart';
 import 'package:clean_house/view/widgets/app-bar/app-bares.dart';
 import 'package:clean_house/view/widgets/btn-generic.dart';
 import 'package:clean_house/view/widgets/drawer-menu-cliente.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 
 class NovoServicoCliente extends StatefulWidget {
   @override
@@ -15,7 +26,19 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
   bool passar = false;
   bool comida = false;
   bool limpar = false;
-  String dropdownValue = 'casa 1';
+  DateTime date1;
+  Residencia residencia;
+  String dataDesejada;
+
+  ClienteService clienteService = new ClienteService();
+  Cliente clienteLogado = new Cliente();
+
+  // String dropdownValue = 'casa 1';
+  void initState() {
+    super.initState();
+    getDependencias();
+  }
+
   void desabilitaTodos() {
     setState(() {
       passar = false;
@@ -24,10 +47,28 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
     });
   }
 
+  void setClienteLogado(Cliente newCliente) {
+    setState(() {
+      clienteLogado = newCliente;
+      residencia = newCliente.residencias[0];
+    });
+  }
+
   //TODO pegar cliente cadastrado
+  void getDependencias() async {
+    Response response = await clienteService.buscaById('1');
+    if (response != null && response.statusCode == 200) {
+      var newCliente = Cliente();
+      newCliente = Cliente.fromJson(
+          jsonDecode(utf8.decode(response.body.runes.toList())));
+      setClienteLogado(newCliente);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(clienteLogado);
+    print(clienteLogado.nomeCompleto);
     var appBar = MyAppBar.appBarCliente;
     double larguraTela = MediaQuery.of(context).size.width;
     var size = MediaQuery.of(context).size;
@@ -45,10 +86,18 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
         fontWeight: FontWeight.bold);
 
     redirectEscolhaProfissional() {
+      SolicitacaoDeServicoDTO sltServicoSend = SolicitacaoDeServicoDTO();
+      sltServicoSend.residencia = residencia;
+      sltServicoSend.idCliente = clienteLogado.id;
+      ServicosApi servicos = ServicosApi(
+          cozinhar: comida, faxina: limpar, passarLavarRoupa: passar);
+      sltServicoSend.servicos = servicos;
+      sltServicoSend.data = dataDesejada;
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => EscolhaProfissional()));
+              builder: (BuildContext context) =>
+                  EscolhaProfissional(sltServicoSend)));
     }
 
     return Scaffold(
@@ -124,42 +173,94 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                               })
                             },
                           ),
-                          Text('Suldeste')
+                          Text('Lavar roupa')
                         ],
                       ),
                     ],
                   ),
-                  SizedBox(height: alturaTela * .06),
+                  SizedBox(height: alturaTela * .03),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        date1 == null
+                            ? Container()
+                            : Text(
+                                "Data",
+                                style: TextStyle(color: myBlue),
+                              ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        RaisedButton(
+                          color: myBlue,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0)),
+                          child: Text(
+                            date1 != null
+                                ? DateFormat('dd-MM-yyyy').format(date1)
+                                : 'Escolha a data',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () {
+                            showDatePicker(
+                                    // locale: Locale(''),
+                                    context: context,
+                                    initialDate:
+                                        date1 != null ? date1 : DateTime.now(),
+                                    firstDate: DateTime.now(),
+                                    lastDate: DateTime(2022))
+                                .then((value) {
+                              setState(() {
+                                date1 = value;
+                                dataDesejada =
+                                    DateFormat('yyyy-dd-MM').format(value);
+                              });
+                            });
+                          },
+                        )
+                      ],
+                    ),
+                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      DropdownButton<String>(
-                        value: dropdownValue,
-                        icon: Icon(
-                          Icons.arrow_downward,
-                          color: myBlue,
-                        ),
-                        iconSize: 24,
-                        elevation: 16,
-                        style: TextStyle(color: myBlue),
-                        underline: Container(
-                          height: 2,
-                          color: myBlue,
-                        ),
-                        onChanged: (String newValue) {
-                          setState(() {
-                            dropdownValue = newValue;
-                          });
-                        },
-                        items: <String>['casa 1', 'casa 2', 'caso 3']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text('minha casa Osasco'),
-                          );
-                        }).toList(),
-                      )
+                      clienteLogado == null
+                          ? Container()
+                          : DropdownButton<Residencia>(
+                              value: clienteLogado == null
+                                  ? null
+                                  : clienteLogado.residencias[0],
+                              icon: Icon(
+                                Icons.arrow_downward,
+                                color: myBlue,
+                              ),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: TextStyle(color: myBlue),
+                              underline: Container(
+                                height: 2,
+                                color: myBlue,
+                              ),
+                              onChanged: (Residencia newValue) {
+                                setState(() {
+                                  residencia = newValue;
+                                });
+                              },
+                              items: clienteLogado == null
+                                  ? []
+                                  : clienteLogado.residencias
+                                      .map<DropdownMenuItem<Residencia>>(
+                                          (Residencia value) {
+                                      return DropdownMenuItem<Residencia>(
+                                        value: value,
+                                        child: Text(value.nome != null
+                                            ? value.nome
+                                            : "sem nome"),
+                                      );
+                                    }).toList(),
+                            )
                     ],
                   ),
                   SizedBox(height: alturaTela * .03),
@@ -170,9 +271,8 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                       fontSize: alturaTela * .03,
                       titulo: "outra residência",
                       color: myGreen,
-                      onPress: redirectEscolhaProfissional,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
