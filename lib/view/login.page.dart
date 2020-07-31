@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:clean_house/models/api/cliente.dart';
+import 'package:clean_house/models/api/user.dart';
 import 'package:clean_house/models/api/usuario-api.dart';
 import 'package:clean_house/services/usuario-service.dart';
+import 'package:clean_house/view/home/home-page-cliente.dart';
 import 'package:clean_house/view/widgets/buttons/btn-generic.dart';
 import 'package:flutter/material.dart';
 
@@ -19,11 +22,29 @@ cadastrastrese(contexto) => Navigator.push(contexto,
     MaterialPageRoute(builder: (BuildContext context) => EscolhaPerfil()));
 
 class LoginPage extends StatelessWidget {
-  var user = UsuarioApi();
+  var user = User();
   var userService = UsuarioService();
-  void loginUser() {
-    Response respo = userService.login(jsonEncode(user.toJson()));
-    print(respo.body);
+
+  void goToCliente(contexto) => Navigator.push(contexto,
+      MaterialPageRoute(builder: (BuildContext context) => HomePageCliente()));
+
+  void loginUser() async {
+    Response respo = await userService.login(jsonEncode(user.toJson()));
+    if (respo.statusCode == 200) {
+      // var newUser = UsuarioApi.fromJson(
+      //     jsonDecode(utf8.decode(respo.body.runes.toList())));
+      var resp = jsonDecode(utf8.decode(respo.body.runes.toList()));
+      if (resp['usuario']['tipo'] == 'cliente') {
+        var cliente = Cliente.fromJson(
+            jsonDecode(utf8.decode(respo.body.runes.toList())));
+        print(cliente.celular);
+      }
+      // print(respo.body['usuario']);
+
+      // print(respo.body);
+    } else {
+      print("=--=-=sdsd");
+    }
   }
 
   @override

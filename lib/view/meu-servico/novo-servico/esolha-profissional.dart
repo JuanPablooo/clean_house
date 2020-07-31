@@ -142,6 +142,8 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
                                     color: Colors.white,
                                     fontSize: alturaTela * .03),
                               ),
+                              //TODO (adicionar animação com este cara) 'assets/animacoes/clean.json'
+                              //'assets/animacoes/aspirador1.json' 'assets/animacoes/clean.json'
                               Container(
                                   child: Lottie.asset(
                                       'assets/animacoes/aspirador1.json')),

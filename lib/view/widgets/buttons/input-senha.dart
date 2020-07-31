@@ -9,6 +9,7 @@ changeColorUnderlineInputBorder(color) => UnderlineInputBorder(
 TextFormField inputSenha(setSenha) => TextFormField(
       keyboardType: TextInputType.visiblePassword,
       onChanged: setSenha,
+      obscureText: true,
       decoration: InputDecoration(
         labelText: "Senha",
         enabledBorder: changeColorUnderlineInputBorder(Colors.white),
