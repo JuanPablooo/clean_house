@@ -1,18 +1,15 @@
 import 'dart:convert';
 
-import 'package:clean_house/constants/constantes-general.dart';
 import 'package:clean_house/constants/cores.dart';
 import 'package:clean_house/models/api/cliente.dart';
 import 'package:clean_house/models/api/residencia.dart';
 import 'package:clean_house/models/api/servicos-api.dart';
 import 'package:clean_house/models/api/solicitacao-servico-send.dart';
-import 'package:clean_house/models/api/solicitacao-servico.dart';
 import 'package:clean_house/services/cliente-service.dart';
 import 'package:clean_house/view/meu-servico/novo-servico/esolha-profissional.dart';
 import 'package:clean_house/view/widgets/app-bar/app-bares.dart';
 import 'package:clean_house/view/widgets/btn-generic.dart';
 import 'package:clean_house/view/widgets/drawer-menu-cliente.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
@@ -36,6 +33,15 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
   // String dropdownValue = 'casa 1';
   void initState() {
     super.initState();
+
+    Residencia residencias = Residencia();
+    residencias.nome = "casa";
+    List<Residencia> res = new List<Residencia>();
+    res.add(residencias);
+    var cliente = new Cliente();
+    cliente.residencias = res;
+
+    clienteLogado = cliente;
     getDependencias();
   }
 
@@ -50,7 +56,9 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
   void setClienteLogado(Cliente newCliente) {
     setState(() {
       clienteLogado = newCliente;
-      residencia = newCliente.residencias[0];
+      if (newCliente != null) {
+        residencia = newCliente.residencias[0];
+      }
     });
   }
 
@@ -139,6 +147,32 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
+                          // Center(
+                          //     child: InkWell(
+                          //   onTap: () {
+                          //     setState(() {
+                          //       limpar = !limpar;
+                          //     });
+                          //   },
+                          //   child: Container(
+                          //     decoration: BoxDecoration(
+                          //         shape: BoxShape.circle, color: myGreen),
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.all(10.0),
+                          //       child: limpar
+                          //           ? Icon(
+                          //               Icons.check,
+                          //               size: 30.0,
+                          //               color: Colors.white,
+                          //             )
+                          //           : Icon(
+                          //               Icons.check_box_outline_blank,
+                          //               size: 30.0,
+                          //               color: myGreen,
+                          //             ),
+                          //     ),
+                          //   ),
+                          // )),
                           Checkbox(
                             value: limpar,
                             onChanged: (bool newValue) => {
@@ -226,41 +260,34 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      clienteLogado == null
-                          ? Container()
-                          : DropdownButton<Residencia>(
-                              value: clienteLogado == null
-                                  ? null
-                                  : clienteLogado.residencias[0],
-                              icon: Icon(
-                                Icons.arrow_downward,
-                                color: myBlue,
-                              ),
-                              iconSize: 24,
-                              elevation: 16,
-                              style: TextStyle(color: myBlue),
-                              underline: Container(
-                                height: 2,
-                                color: myBlue,
-                              ),
-                              onChanged: (Residencia newValue) {
-                                setState(() {
-                                  residencia = newValue;
-                                });
-                              },
-                              items: clienteLogado == null
-                                  ? []
-                                  : clienteLogado.residencias
-                                      .map<DropdownMenuItem<Residencia>>(
-                                          (Residencia value) {
-                                      return DropdownMenuItem<Residencia>(
-                                        value: value,
-                                        child: Text(value.nome != null
-                                            ? value.nome
-                                            : "sem nome"),
-                                      );
-                                    }).toList(),
-                            )
+                      DropdownButton<Residencia>(
+                        value: clienteLogado.residencias[0],
+                        icon: Icon(
+                          Icons.arrow_downward,
+                          color: myBlue,
+                        ),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(color: myBlue),
+                        underline: Container(
+                          height: 2,
+                          color: myBlue,
+                        ),
+                        onChanged: (Residencia newValue) {
+                          setState(() {
+                            residencia = newValue;
+                          });
+                        },
+                        items: clienteLogado.residencias
+                            .map<DropdownMenuItem<Residencia>>(
+                                (Residencia value) {
+                          return DropdownMenuItem<Residencia>(
+                            value: value,
+                            child: Text(
+                                value.nome != null ? value.nome : "sem nome"),
+                          );
+                        }).toList(),
+                      )
                     ],
                   ),
                   SizedBox(height: alturaTela * .03),
@@ -276,7 +303,6 @@ class _NovoServicoClienteState extends State<NovoServicoCliente> {
                 ],
               ),
             ),
-            //TODO enviar a solicitacao de servico para a esolha do profissional
             SizedBox(height: alturaTela * .03),
             Container(
               width: larguraTela * .75,

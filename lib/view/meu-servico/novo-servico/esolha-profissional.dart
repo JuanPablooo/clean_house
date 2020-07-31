@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:clean_house/constants/constantes-general.dart';
@@ -16,6 +17,7 @@ import 'package:clean_house/view/widgets/drawer-menu-cliente.dart';
 import 'package:clean_house/view/widgets/drawer-meu-profissional.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:lottie/lottie.dart';
 
 class EscolhaProfissional extends StatefulWidget {
   SolicitacaoDeServicoDTO servicoDTO;
@@ -27,6 +29,8 @@ class EscolhaProfissional extends StatefulWidget {
 class _EscolhaProfissionalState extends State<EscolhaProfissional> {
   ProfissionalService proService = new ProfissionalService();
   List<Profissional> profissionais;
+  Timer _timer;
+  bool carregar = false;
 
   setProfissionais(List<Profissional> value) {
     setState(() {
@@ -38,6 +42,7 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
 
   void initState() {
     super.initState();
+    carregar = false;
     getDependencias();
   }
 
@@ -60,6 +65,20 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
     }
   }
 
+  esperar() {
+    _timer = new Timer(const Duration(milliseconds: 2300), () {
+      setState(() {
+        carregar = true;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
     print(profissionais);
@@ -76,7 +95,7 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
 
     Profissional profissional =
         Profissional(nomeCompleto: "Carlos Antônio", celular: "(11) 995545155");
-
+    esperar();
     return Scaffold(
       appBar: appBar,
       drawer: MyDrawerMenuCliente(),
@@ -100,86 +119,120 @@ class _EscolhaProfissionalState extends State<EscolhaProfissional> {
                 child: Container(
                   height: 10,
                   width: larguraTela * .8,
-                  child: ListView.builder(
-                    itemCount: profissionais != null ? profissionais.length : 0,
-                    // physics: AlwaysScrollableScrollPhysics(parent: ),
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      Profissional profAtual = profissionais[index];
-                      if (index == 0) {
-                        // return the header
-                        return new Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: <Widget>[
-                            SizedBox(height: alturaTela * .07),
-                            Container(
-                              width: larguraTela / 1,
-                              height: alturaTela / 9,
-                              child: Center(
-                                child: Text(
-                                  'Escolha um profissional',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: alturaTela * .05,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                  // child: profissionais == null && !carregar
+                  child: profissionais == null || !carregar
+                      ? Container(
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: alturaTela * .3,
                               ),
-                            ),
-                            CardEscolhaProfissional(
+                              Text(
+                                'Calma ai!',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: alturaTela * .06),
+                              ),
+                              SizedBox(
+                                height: alturaTela * .03,
+                              ),
+                              Text(
+                                'Buscando profissionais',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: alturaTela * .03),
+                              ),
+                              Container(
+                                  child: Lottie.asset(
+                                      'assets/animacoes/aspirador1.json')),
+                            ],
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount:
+                              profissionais != null ? profissionais.length : 0,
+                          // physics: AlwaysScrollableScrollPhysics(parent: ),
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (BuildContext context, int index) {
+                            Profissional profAtual = profissionais[index];
+                            if (index == 0) {
+                              // return the header
+                              return new Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  SizedBox(height: alturaTela * .07),
+                                  Container(
+                                    width: larguraTela / 1,
+                                    height: alturaTela / 9,
+                                    child: Center(
+                                      child: Text(
+                                        'Escolha um profissional',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: alturaTela * .05,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  CardEscolhaProfissional(
+                                    larguraTela: larguraTela,
+                                    alturaTela: alturaTela,
+                                    profissional: profAtual,
+                                  ),
+                                  Container(
+                                    height: 10,
+                                    width: larguraTela * .8,
+                                    child: ListView.builder(
+                                      itemCount: 3,
+                                      // physics: AlwaysScrollableScrollPhysics(parent: ),
+                                      scrollDirection: Axis.vertical,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        // Servico servico = homeController.servicos[index];
+                                        if (index == 0) {
+                                          // return the header
+                                          return new Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: <Widget>[
+                                              SizedBox(
+                                                  height: alturaTela * .07),
+                                              Container(
+                                                width: larguraTela / 1,
+                                                height: alturaTela / 9,
+                                                child: Center(
+                                                  child: Text(
+                                                    'SERVIÇOS',
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize:
+                                                            alturaTela * .05,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        }
+                                        // return CardEscolhaProfissional(
+                                        //   larguraTela: larguraTela,
+                                        //   alturaTela: alturaTela,
+                                        //   profissional: profissional,
+                                        // );
+                                      },
+                                    ),
+                                  )
+                                ],
+                              );
+                            }
+                            return Container(
+                                child: CardEscolhaProfissional(
                               larguraTela: larguraTela,
                               alturaTela: alturaTela,
                               profissional: profAtual,
-                            ),
-                            Container(
-                              height: 10,
-                              width: larguraTela * .8,
-                              child: ListView.builder(
-                                itemCount: 3,
-                                // physics: AlwaysScrollableScrollPhysics(parent: ),
-                                scrollDirection: Axis.vertical,
-                                itemBuilder: (BuildContext context, int index) {
-                                  // Servico servico = homeController.servicos[index];
-                                  if (index == 0) {
-                                    // return the header
-                                    return new Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: <Widget>[
-                                        SizedBox(height: alturaTela * .07),
-                                        Container(
-                                          width: larguraTela / 1,
-                                          height: alturaTela / 9,
-                                          child: Center(
-                                            child: Text(
-                                              'SERVIÇOS',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: alturaTela * .05,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }
-                                  // return CardEscolhaProfissional(
-                                  //   larguraTela: larguraTela,
-                                  //   alturaTela: alturaTela,
-                                  //   profissional: profissional,
-                                  // );
-                                },
-                              ),
-                            )
-                          ],
-                        );
-                      }
-                      return Container(
-                          child: CardEscolhaProfissional(
-                        larguraTela: larguraTela,
-                        alturaTela: alturaTela,
-                        profissional: profAtual,
-                      ));
-                    },
-                  ),
+                            ));
+                          },
+                        ),
                 ),
               )
             ],
